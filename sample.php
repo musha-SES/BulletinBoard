@@ -12,6 +12,7 @@
         echo "こんにちは";
         echo "How Time It's now";
         echo "123456789";
+        echo "aaaaa";
     ?>
         
 </body>
