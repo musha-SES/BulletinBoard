@@ -9,7 +9,8 @@
 <body>
     <h1>Hello World!</h1>
     <?php
-        echo "こんにちは"
+        echo "こんにちは";
+        echo "How Time It's now";
     ?>
         
 </body>
