@@ -20,6 +20,22 @@ if(!$id){
 $db = dbconnect();
 changeTheLog($id); // 最終アクセスの更新
 ?>
+
+<script>
+function confirm_test() { // 問い合わせるボタンをクリックした場合
+    document.getElementById('popup').style.display = 'block';
+    return false;
+}
+ 
+function okfunc() { // OKをクリックした場合
+    document.contactform.submit();
+}
+ 
+function nofunc() { // キャンセルをクリックした場合
+    document.getElementById('popup').style.display = 'none';
+}
+</script>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -57,13 +73,33 @@ changeTheLog($id); // 最終アクセスの更新
         if ($stmt->fetch()):
         ?>
         <div class="msg">
-            <?php if ($picture): ?>
+            <!-- トプ画表示 -->
+            <?php if ($picture): ?> 
                 <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
             <?php endif; ?>
-            <p><?php echo h($message); ?><span class="name">（<?php echo h($name); ?>）</span></p>
-            <p class="day"><a href="view.php?id=">作成日：<?php echo h($created); ?></a>
-                [<a href="delete.php?id=" style="color: #F33;">削除</a>]
-            </p>
+                <!-- 一言表示 -->
+                <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span>                
+                <?php echo h($message); ?>
+                </p>
+
+            <div class="day">
+            <!-- 作成日の表示 -->
+                    <a>作成日：<?php echo h($created); ?></a>
+            </div>
+
+            <!-- メッセージ削除機能 -->
+                <div class="delete">
+                <?php if ($_SESSION['id'] === $member_id): ?>
+                        <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
+                            <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
+                        </form>
+                </div>
+                <div id="popup"	style="display: none;">
+                        削除しますか？<br />
+                        <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
+                        <button id="no" onclick="nofunc()">キャンセル</button>
+                </div>
+                <?php endif; ?>
         </div>
         <?php else: ?>
         <p>その投稿は削除されたか、URLが間違えています</p>

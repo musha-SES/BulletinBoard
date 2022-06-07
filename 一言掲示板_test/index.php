@@ -117,15 +117,15 @@ function nofunc() { // キャンセルをクリックした場合
                         <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
                             <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
                         </form>
-                </div>
-                <div id="popup"	style="display: none;">
-                        削除しますか？<br />
-                        <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
-                        <button id="no" onclick="nofunc()">キャンセル</button>
+                        <div id="popup"	style="display: none;">
+                            削除しますか？<br />
+                            <button id="ok" onclick="okfunc()">削除</button>
+                            <button id="no" onclick="nofunc()">キャンセル</button>
+                        </div>
                 </div>
                 <?php endif; ?>
         </div>
-        <?php endwhile; ?>
+    <?php endwhile; ?>
     </div>
 <!--------------------------------------------------------------------------------------------------------------------------->
 </div>

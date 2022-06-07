@@ -13,6 +13,20 @@ if (isset($_SESSION['id'])){ //値チェック
 
 $db = dbconnect(); //DB接続
 ?>
+<script>
+function confirm_test() { // 問い合わせるボタンをクリックした場合
+    document.getElementById('popup').style.display = 'block';
+    return false;
+}
+ 
+function okfunc() { // OKをクリックした場合
+    document.contactform.submit();
+}
+ 
+function nofunc() { // キャンセルをクリックした場合
+    document.getElementById('popup').style.display = 'none';
+}
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +86,7 @@ $db = dbconnect(); //DB接続
             <!-- メッセージ削除機能 -->
                 <div class="delete">
                 <?php if ($_SESSION['id'] === $member_id): ?>
-                        <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
+                        <form name="contactform" action="delete.php?id=<?php echo h($pid); ?>">
                             <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
                         </form>
                 </div>
@@ -83,7 +97,7 @@ $db = dbconnect(); //DB接続
                 </div>
                 <?php endif; ?>
             </div>
-            <?php endwhile; ?>
+        <?php endwhile; ?>
 <!------------------------------------------------------------------------------------------------------------------------------------->
         </div>
         </div>
