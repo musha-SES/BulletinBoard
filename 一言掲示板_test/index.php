@@ -32,6 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
     exit();
 }
 ?>
+<script>
+function confirm_test() { // 問い合わせるボタンをクリックした場合
+    document.getElementById('popup').style.display = 'block';
+    return false;
+}
+ 
+function okfunc() { // OKをクリックした場合
+    document.contactform.submit();
+}
+ 
+function nofunc() { // キャンセルをクリックした場合
+    document.getElementById('popup').style.display = 'none';
+}
+</script>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -97,10 +111,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                 <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
                 <!-- メッセージ削除機能 -->
                 <?php if ($_SESSION['id'] === $member_id): ?>
-                    [<a href="delete.php?id=<?php echo h($id); ?>" style="color: #F33;">削除</a>]
-                    <?php endif; ?>
-                </p>
-            </div>
+                    <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
+                        <input type="submit" value="削除" name="contact" onclick="return confirm_test()" />
+                    </form>
+                    <div id="popup"	style="display: none;">
+                        削除しますか？<br />
+                        <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
+                        <button id="no" onclick="nofunc()">キャンセル</button>
+                    </div>
+                <?php endif; ?>
+            </p>
+        </div>
         <?php endwhile; ?>
 <!--------------------------------------------------------------------------------------------------------------------------->
     </div>

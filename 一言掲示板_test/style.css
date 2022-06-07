@@ -195,3 +195,14 @@ li {
 		font-weight: bold;
 		border-bottom: 1px solid #ccc;
  }
+
+#popup {
+	width: 200px;
+	padding: 30px 20px;
+	border: 2px solid #000;
+	background-color: rgb(0, 145, 255) !important;
+	margin: auto;
+	text-align: center;
+	font-size: 70%;
+
+}
