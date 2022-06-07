@@ -65,17 +65,27 @@ $db = dbconnect(); //DB接続
             <!-- 一言表示 -->
             <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span>                 
                 <?php echo h($message); ?></p>
-            <p class="day">
-                    <!-- 作成日の表示 -->
+            <div class="day">
+            <!-- 作成日の表示 -->
                     <a href="view.php?id=<?php echo h($pid); ?>">作成日：<?php echo h($created); ?></a>
-                    <!-- メッセージ削除機能 -->
-                    <?php if ($_SESSION['id'] === $member_id): ?>
-                        [<a href="delete.php?id=<?php echo h($pid); ?>" style="color: #F33;">削除</a>]
-                    <?php endif; ?>
-            </p>
             </div>
-        <?php endwhile; ?>
+            <!-- メッセージ削除機能 -->
+                <div class="delete">
+                <?php if ($_SESSION['id'] === $member_id): ?>
+                        <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
+                            <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
+                        </form>
+                </div>
+                <div id="popup"	style="display: none;">
+                        削除しますか？<br />
+                        <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
+                        <button id="no" onclick="nofunc()">キャンセル</button>
+                </div>
+                <?php endif; ?>
+            </div>
+            <?php endwhile; ?>
 <!------------------------------------------------------------------------------------------------------------------------------------->
+        </div>
         </div>
     </div>
 </body>

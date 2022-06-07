@@ -10,6 +10,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])){
     exit;
 }
 
+// IDチェック
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if(!$id){
     header('Location: index.php');
@@ -17,7 +18,7 @@ if(!$id){
 }
 
 $db = dbconnect();
-changeTheLog($id);
+changeTheLog($id); // 最終アクセスの更新
 ?>
 <!DOCTYPE html>
 <html lang="ja">

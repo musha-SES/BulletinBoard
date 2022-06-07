@@ -94,8 +94,7 @@ function nofunc() { // キャンセルをクリックした場合
         }
         $stmt->bind_result($id, $member_id, $message, $access, $name, $picture); //各変数に値を挿入
 
-        while ($stmt->fetch()): //値がなくなるまで下の処理を実        
-        ?>
+    while ($stmt->fetch()): //値がなくなるまで下の処理を実?>
 <!--------------------------------------------- ヒトコトの一覧表示 ------------------------------------------------------------>
         <div class="msg">
             <!-- トプ画表示 -->
@@ -106,25 +105,30 @@ function nofunc() { // キャンセルをクリックした場合
                 <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span>                
                 <?php echo h($message); ?>
                 </p>
-            <p class="day">
-                <!-- 最終アクセスの表示 -->
-                <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
-                <!-- メッセージ削除機能 -->
+
+            <div class="day">
+            <!-- 最終アクセスの表示 -->
+                    <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
+            </div>
+
+            <!-- メッセージ削除機能 -->
+                <div class="delete">
                 <?php if ($_SESSION['id'] === $member_id): ?>
-                    <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
-                        <input type="submit" value="削除" name="contact" onclick="return confirm_test()" />
-                    </form>
-                    <div id="popup"	style="display: none;">
+                        <form name="contactform" action="delete.php?id=<?php echo h($id); ?>">
+                            <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
+                        </form>
+                </div>
+                <div id="popup"	style="display: none;">
                         削除しますか？<br />
                         <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
                         <button id="no" onclick="nofunc()">キャンセル</button>
-                    </div>
+                </div>
                 <?php endif; ?>
-            </p>
         </div>
         <?php endwhile; ?>
-<!--------------------------------------------------------------------------------------------------------------------------->
     </div>
+<!--------------------------------------------------------------------------------------------------------------------------->
+</div>
 </div>
 </body>
 
