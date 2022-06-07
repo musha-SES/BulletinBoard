@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ひとこと掲示板</title>
+    <title>ヒトコト</title>
 
     <link rel="stylesheet" href="style.css"/>
 </head>
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
 <body>
 <div id="wrap">
     <div id="head">
-        <h1>hitokoto</h1>
+        <h1>ヒトコト</h1>
     </div>
     <div id="content">
         <div style="text-align: right"><a href="logout.php">Logout</a></div>

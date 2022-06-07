@@ -34,7 +34,7 @@ changeTheLog($id);
 <body>
 <div id="wrap">
     <div id="head">
-        <h1>ヒトコト</h1>
+        <h1>ヒトコト --Massage--</h1>
     </div>
     <div id="content">
     <div class="titlebar">
