@@ -71,7 +71,7 @@ function confirm_test() {
                 </form>
 
                 <?php 
-                    $stmt = $db->prepare('select p.id, p.member_id, p.message, p.access, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
+                    $stmt = $db->prepare('select p.id, p.member_id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
                         if (!$stmt) {//エラー処理
                             die($db->error);
                     }
@@ -79,7 +79,7 @@ function confirm_test() {
                         if (!$success) {//エラー処理
                             die($db->error);
                     }
-                    $stmt->bind_result($id, $member_id, $message, $access, $name, $picture); //各変数に値を挿入
+                    $stmt->bind_result($id, $member_id, $message, $created, $name, $picture); //各変数に値を挿入
 
                 while ($stmt->fetch()): //以下ループ処理 ?>
 <!--------------------------------------------- ヒトコトの一覧表示 ------------------------------------------------------------>
@@ -92,7 +92,7 @@ function confirm_test() {
                     <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
                     <!-- 最終アクセスの表示 -->
                     <div class="day">
-                        <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
+                        <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($created); ?></a>
                     </div>
                     <!-- メッセージ削除機能 -->
                     <?php if ($_SESSION['id'] === $member_id): ?>
