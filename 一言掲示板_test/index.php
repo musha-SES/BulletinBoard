@@ -92,7 +92,7 @@ function confirm_test() {
                     <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
                     <!-- 最終アクセスの表示 -->
                     <div class="day">
-                        <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($created); ?></a>
+                        <a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a>
                     </div>
                     <!-- メッセージ削除機能 -->
                     <?php if ($_SESSION['id'] === $member_id): ?>

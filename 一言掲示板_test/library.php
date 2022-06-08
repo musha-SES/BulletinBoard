@@ -125,3 +125,4 @@ function changeThePhoto(string $filename,int $id){
         die($db->error);
     }
 }
+?>
