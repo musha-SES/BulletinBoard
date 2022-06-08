@@ -2,8 +2,8 @@
 session_start();
 require('library.php');
 
-//login.phpから受け取った変数を受け取り
-if (isset($_SESSION['id']) && isset($_SESSION['name'])){ //値が入っているかの条件式
+//値の有無チェック
+if (isset($_SESSION['id']) && isset($_SESSION['name'])){ 
     $id =$_SESSION['id'];
     $name = $_SESSION['name'];
     $photo = $_SESSION['photo'];
@@ -32,6 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
     exit();
 }
 ?>
+<script>
+function confirm_test() {
+    var select = confirm("このヒトコトを本当に削除してよろしいですか？");
+    return select;
+}
+</script>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -46,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
 </head>
 
 <body>
+<<<<<<< HEAD
 <div id="wrap">
     <div id="head">
         <h1>ヒトコト</h1>
@@ -67,44 +74,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                 </p>
             </div>
         </form>
+=======
+    <div id="wrap">
+        <div id="head">
+            <h1>ヒトコト</h1>
+        </div>
+            <div id="content">
+                <div style="text-align: right"><a href="logout.php">Logout</a></div>
+                <form action="" method="post">
+                    <dl>
+                        <!-- マイページ -->
+                        <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
+                        <!-- テキストエリア -->
+                        <dd><textarea name="message" cols="50" rows="5"></textarea></dd>
+                    </dl>
+                    <div>
+                        <p style="padding-bottom: 15px;"><input type="submit" value="done"/></p>
+                    </div>
+                </form>
+>>>>>>> test
 
+                <?php 
+                    $stmt = $db->prepare('select p.id, p.member_id, p.message, p.access, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
+                        if (!$stmt) {//エラー処理
+                            die($db->error);
+                    }
+                    $success = $stmt->execute();//sql実行。エラー処理のために変数に挿入
+                        if (!$success) {//エラー処理
+                            die($db->error);
+                    }
+                    $stmt->bind_result($id, $member_id, $message, $access, $name, $picture); //各変数に値を挿入
 
-        <?php 
-         $stmt = $db->prepare('select p.id, p.member_id, p.message, p.access, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
-        if (!$stmt) {//エラー処理
-            die($db->error);
-        }
-        $success = $stmt->execute();//sql実行。エラー処理のために変数に挿入
-        if (!$success) {//エラー処理
-            die($db->error);
-        }
-        $stmt->bind_result($id, $member_id, $message, $access, $name, $picture); //各変数に値を挿入
-
-        while ($stmt->fetch()): //値がなくなるまで下の処理を実        
-        ?>
+                while ($stmt->fetch()): //以下ループ処理 ?>
 <!--------------------------------------------- ヒトコトの一覧表示 ------------------------------------------------------------>
-        <div class="msg">
-            <!-- トプ画表示 -->
-            <?php if ($picture): ?> 
-                <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
-            <?php endif; ?>
-                <!-- 一言表示 -->
-                <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span>                
-                <?php echo h($message); ?>
-                </p>
-            <p class="day">
-                <!-- 最終アクセスの表示 -->
-                <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
-                <!-- メッセージ削除機能 -->
-                <?php if ($_SESSION['id'] === $member_id): ?>
-                    [<a href="delete.php?id=<?php echo h($id); ?>" style="color: #F33;">削除</a>]
+                <div class="msg">
+                    <!-- トプ画表示 -->
+                    <?php if ($picture): ?> 
+                        <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
                     <?php endif; ?>
-                </p>
+                    <!-- 一言表示 -->
+                    <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
+                    <!-- 最終アクセスの表示 -->
+                    <div class="day">
+                        <a href="view.php?id=<?php echo h($id); ?>">最終アクセス：<?php echo h($access); ?></a>
+                    </div>
+                    <!-- メッセージ削除機能 -->
+                    <?php if ($_SESSION['id'] === $member_id): ?>
+                        <div class="delete">
+                            <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
+                                <input type="submit" value="削除"/>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <?php endwhile; ?>
             </div>
-        <?php endwhile; ?>
 <!--------------------------------------------------------------------------------------------------------------------------->
+        </div>
     </div>
-</div>
 </body>
-
 </html>

@@ -148,7 +148,7 @@ li {
 .msg {
 	clear: both;
 	border-top: 1px solid #ccc;
-	padding: 10px 0;
+	padding: 10px 0 ;
 }
 .msg img {
 	float: left;
@@ -157,10 +157,15 @@ li {
 .msg p {
 	margin: 0;
 }
-.msg .day,
-.msg .day a {
-	font-size: 80%;
-	color: #999;
+.day a{
+	font-size: 75% !important;
+	color: #999 !important;
+	margin-right: 5px;
+	float: left;
+}
+.delete input{
+	font-size: 50%;
+	color: #ff0000;
 }
 
 .subject {

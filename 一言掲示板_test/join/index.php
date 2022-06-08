@@ -1,28 +1,28 @@
 <?php
 session_start();
 require('../library.php');
-
+//$formの値が入っていない(TURE),入っている(FALES)
 if (isset($_GET['action']) && $_GET['action'] === 'rewrite' && isset($_SESSION['form'])){
     $form = $_SESSION['form'];
 } else {
-    $form = [
+    $form = [ //formの初期化
         'name' => '',
         'email' => '',
         'password' => '',
     ];
 }
-$error = [];
+$error = []; //error配列の初期化
 
 //フォームの内容をチェック
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form['name'] = filter_input(INPUT_POST,'name',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if($form['name'] === ''){
-        $error['name']	= 'blank'; //空白という意味
+    if($form['name'] === ''){ //name_check
+        $error['name']	= 'blank'; //errorメッセージ格納
     }
 
     $form['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    if ($form['email'] === '') {
-        $error['email'] = 'blank';
+    if ($form['email'] === '') { //email_check
+        $error['email'] = 'blank';  
     } else {
         $db = dbconnect();
         $stmt = $db->prepare('select count(*) from members where email=?');
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //画像のチェック
     $image = $_FILES['image'];
     if($image['name'] !== '' && $image['error'] === 0){
-        $type = mime_content_type($image['tmp_name']);
+        $type = mime_content_type($image['tmp_name']); //ファイルチェック
         if($type !== 'image/png' && $type !== 'image/jpeg'){
             $error['image'] = 'type';
         }
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="head">
         <h1>会員登録</h1>
     </div>
-
+<!--------------------------------------------------------------------------------------------------------------------------->
     <div id="content">
         <p>次のフォームに必要事項をご記入ください。</p>
         <form action="" method="post" enctype="multipart/form-data">
@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <p class="error">* ニックネームを入力してください</p>
                     <?php endif; ?>
                 </dd>
+
                 <dt>メールアドレス<span class="required">必須</span></dt>
                 <dd>
                     <input type="text" name="email" size="35" maxlength="255" value="<?php echo h($form['email']); ?>"/>
@@ -117,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (isset($error['email']) && $error['email'] === 'duplicate'): ?>
                     <p class="error">* 指定されたメールアドレスはすでに登録されています</p>
                     <?php endif; ?>
+
                 <dt>パスワード<span class="required">必須</span></dt>
                 <dd>
                     <input type="password" name="password" size="10" maxlength="20" value="<?php echo h($form['password']); ?>"/>
@@ -127,6 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="error">* パスワードは4文字以上で入力してください</p>
                     <?php endif; ?>
                 </dd>
+
                 <dt>写真など</dt>
                 <dd>
                     <input type="file" name="image" size="35" value=""/>
@@ -138,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </dl>
             <div><input type="submit" value="入力内容を確認する"/></div>
         </form>
+<!------------------------------------------------------------------------------------------------------------------------->
     </div>
 </body>
 

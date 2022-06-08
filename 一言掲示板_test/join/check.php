@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	unset($_SESSION['form']);
-	header('Location: thanks.php'); //次のページを移行
+	header('Location: thanks.php'); //次ページ移行
 } 
 ?>
 <!DOCTYPE html>
