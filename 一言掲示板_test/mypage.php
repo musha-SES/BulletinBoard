@@ -33,21 +33,9 @@ function confirm_test() {
 </head>
 <body>
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
-<<<<<<< HEAD
-    <div id="wrap">
-        <div id="head">
-            <h1>ヒトコト --MyPage--</h1> 
-        </div>
-        <div id="content">
-            <div class="titlebar">
-                <p class="subject"><a href="index.php">Timeline</a></p>
-                <p class="date"><a href="logout.php">Logout</a></p><br>
-                <p class="property"><a href="property.php">Property</a></p>
-=======
         <div id="wrap">
             <div id="head">
                 <h1>ヒトコト --MyPage--</h1> 
->>>>>>> test
             </div>
                 <div id="content">
                     <div class="titlebar">

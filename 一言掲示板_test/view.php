@@ -42,39 +42,6 @@ function confirm_test() {
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="wrap">
-    <div id="head">
-        <h1>ヒトコト --Massage--</h1>
-    </div>
-    <div id="content">
-    <div class="titlebar">
-                <p class="subject">&laquo<a href="index.php">Timeline</a></p>
-                <p class="date"><a href="logout.php">Logout</a>&raquo</p><br>
-                <p class="mypage"><a href="mypage.php">Userpage</a>&raquo</p>
-            </div>
-        <?php 
-        $stmt = $db->prepare('select p.id, p.member_id, p.message, p.created, m.name, m.picture from posts p, members m where p .id=? and m.id=p.member_id order by id desc');
-        if (!$stmt) {
-            die($db->error);
-        }
-        $stmt->bind_param('i', $id);
-        $success = $stmt->execute();
-        if (!$success) {
-            die($db->error);
-        }
-        $stmt->bind_result($id, $member_id, $message, $created, $name, $picture);
-        if ($stmt->fetch()):
-        ?>
-        <div class="msg">
-            <?php if ($picture): ?>
-                <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
-            <?php endif; ?>
-            <p><?php echo h($message); ?><span class="name">（<?php echo h($name); ?>）</span></p>
-            <p class="day"><a href="view.php?id=">作成日：<?php echo h($created); ?></a>
-                [<a href="delete.php?id=" style="color: #F33;">削除</a>]
-            </p>
-=======
     <div id="wrap">
         <div id="head">
             <h1>ヒトコト</h1>
@@ -122,7 +89,6 @@ function confirm_test() {
                     <?php else: ?><p>その投稿は削除されたか、URLが間違えています</p>
 <!---------------------------------------------------------------------------------------------------------------------------------->
                 <?php endif; ?>
->>>>>>> test
         </div>
     </div>
 </body>

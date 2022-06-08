@@ -52,29 +52,6 @@ function confirm_test() {
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="wrap">
-    <div id="head">
-        <h1>ヒトコト</h1>
-    </div>
-    <div id="content">
-        <div style="text-align: right"><a href="logout.php">Logout</a></div>
-        <form action="" method="post">
-            <dl>
-                <!-- マイページ -->
-                <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
-                <!-- テキストエリア -->
-                <dd>
-                    <textarea name="message" cols="50" rows="5"></textarea>
-                </dd>
-            </dl>
-            <div>
-                <p style="padding-bottom: 15px;">
-                    <input type="submit" value="done"/>
-                </p>
-            </div>
-        </form>
-=======
     <div id="wrap">
         <div id="head">
             <h1>ヒトコト</h1>
@@ -92,7 +69,6 @@ function confirm_test() {
                         <p style="padding-bottom: 15px;"><input type="submit" value="done"/></p>
                     </div>
                 </form>
->>>>>>> test
 
                 <?php 
                     $stmt = $db->prepare('select p.id, p.member_id, p.message, p.access, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
