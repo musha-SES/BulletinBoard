@@ -11,6 +11,8 @@ require('library.php');
     }
 $db = dbconnect(); //DB接続
 
+$error = []; //error配列の初期化
+
 //ブラウザのリクエストがPOSTだった時
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
     //文字チェック + nameの変更処理
