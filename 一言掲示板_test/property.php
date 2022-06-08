@@ -11,7 +11,8 @@ require('library.php');
     }
 $db = dbconnect(); //DB接続
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストがPOSTだった時
+//ブラウザのリクエストがPOSTだった時
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
     //文字チェック + nameの変更処理
     $name = filter_input(INPUT_POST,'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
     $_SESSION['name'] = changeTheName($name,$id); 
@@ -35,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
             die('ファイルのアプロードに失敗しました');
         }
         $_SESSION['photo'] = $filename;
-        
     } 
     header('Location: mypage.php');
     exit();
@@ -67,27 +67,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
             <div>
                 <form action="" method="post" enctype="multipart/form-data">
                     <dt><h5>名前の変更</h5></dt>
-                        <dl><!-- 名前の変更 -->
-                            <dd>
-                            <input type="text" name="name" cols="20" rows="2" value="<?php echo h($nameName);?>"></input>
-                            </dd>
+                    <!-- 名前の変更 -->
+                        <dl>
+                            <dd><input type="text" name="name" cols="20" rows="2" value="<?php echo h($nameName);?>"></input></dd>
                         </dl>
 
                     <dt><h5>プロフィール画像の変更</h5></dt>
-                        <dl><!-- 画像の変更 -->
+                    <!-- 画像の変更 -->
+                        <dl>
                             <dd>
-                            <input type="file" name="photo" size="35" value=""/>
-                                <?php if (isset($error['photo']) && $error['photo'] === 'type'): ?>
-                                    <p class="error">* 「.png」または「.jpg」の画像を指定してください</p>
-                                <?php endif; ?>
-                                    <p class="error">* 恐れ入りますが、画像を改めて指定してください</p>
+                                <input type="file" name="photo" size="35" value=""/>
+                                    <?php if (isset($error['photo']) && $error['photo'] === 'type'): ?>
+                                        <p class="error">* 「.png」または「.jpg」の画像を指定してください</p>
+                                    <?php endif; ?>
+                                <p class="error">* 恐れ入りますが、画像を改めて指定してください</p>
                             </dd>
                         </dl>
                 
                     <dt><h5>自己紹介の編集</h5></dt>
-                        <dl><!-- 自己紹介文 -->
+                    <!-- 自己紹介文 -->
+                        <dl>
                             <dd>
-                            <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo h($textProfile); ?></textarea>
+                                <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo h($textProfile); ?></textarea>
                             </dd>
                         </dl>
                     <input type="submit" value="done"/>

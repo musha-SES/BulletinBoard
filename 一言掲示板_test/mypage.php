@@ -14,17 +14,10 @@ if (isset($_SESSION['id'])){ //値チェック
 $db = dbconnect(); //DB接続
 ?>
 <script>
-function confirm_test() { // 問い合わせるボタンをクリックした場合
-    document.getElementById('popup').style.display = 'block';
-    return false;
-}
- 
-function okfunc() { // OKをクリックした場合
-    document.contactform.submit();
-}
- 
-function nofunc() { // キャンセルをクリックした場合
-    document.getElementById('popup').style.display = 'none';
+//確認ポップアップ表示
+function confirm_test() {
+    var select = confirm("このヒトコトを本当に削除してよろしいですか？");
+    return select;
 }
 </script>
 
@@ -40,67 +33,60 @@ function nofunc() { // キャンセルをクリックした場合
 </head>
 <body>
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
-    <div id="wrap">
-        <div id="head">
-            <h1>ヒトコト --MyPage--</h1> 
-        </div>
-        <div id="content">
-            <div class="titlebar">
-                <p class="subject"><a href="index.php">Timeline</a></p>
-                <p class="date"><a href="logout.php">Logout</a></p><br>
-                <p class="property"><a href="property.php">Property</a></p>
+        <div id="wrap">
+            <div id="head">
+                <h1>ヒトコト --MyPage--</h1> 
             </div>
-            <!-- 名前とプロフィール画像の表示 -->
-            <div class="profile">
-                <h3>[<?php echo h($name); ?>]</h3>
-                <?php if ($photo): ?>
-                    <img src="member_picture/<?php echo h($photo); ?>" width="150" />
-                    <?php endif; ?><br>
-                <a><?php echo h($profile); ?></a>
-            </div>
-            
+                <div id="content">
+                    <div class="titlebar">
+                        <p class="subject"><a href="index.php">Timeline</a></p>
+                        <p class="date"><a href="logout.php">Logout</a></p><br>
+                        <p class="property"><a href="property.php">Property</a></p>
+                    </div>
+                    <!-- 名前とプロフィール画像の表示 -->
+                    <div class="profile">
+                        <h3>[<?php echo h($name); ?>]</h3>
+                        <?php if ($photo): ?>
+                            <img src="member_picture/<?php echo h($photo); ?>" width="150" />
+                        <?php endif; ?><br>
+                        <a><?php echo h($profile); ?></a>
+                    </div>     
 <!------------------------------------------------------------------------------------------------------------------------------------->
-                
+                    
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>
-        <h4>--- hitototo ---</h4>
-        <?php //一言データの取得sql
-            $sth = $db->prepare('select id, message, member_id, created  from posts where member_id=? order by id desc'); //sqlのセット
-                if (!$sth) { //エラー処理
-                    die($db->error);
-                }
-            $sth->bind_param('i',$id);
-            $sth->execute();
-            $sth->bind_result($pid, $message, $member_id, $created); //各変数に値を挿入
- 
+                    <h4>--- hitototo ---</h4>
+                    <?php //一言データの取得sql
+                        $sth = $db->prepare('select id, message, member_id, created  from posts where member_id=? order by id desc'); //sqlのセット
+                            if (!$sth) { //エラー処理
+                                die($db->error);
+                            }
+                        $sth->bind_param('i',$id);
+                        $sth->execute();
+                        $sth->bind_result($pid, $message, $member_id, $created); //各変数に値を挿入
+            
 
-        while($sth->fetch()): //値がなくなるまで下の処理を実行 
-        ?>
-            <div class="msg">
-            <!-- 一言表示 -->
-            <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span>                 
-                <?php echo h($message); ?></p>
-            <div class="day">
-            <!-- 作成日の表示 -->
-                    <a href="view.php?id=<?php echo h($pid); ?>">作成日：<?php echo h($created); ?></a>
-            </div>
-            <!-- メッセージ削除機能 -->
-                <div class="delete">
-                <?php if ($_SESSION['id'] === $member_id): ?>
-                        <form name="contactform" action="delete.php?id=<?php echo h($pid); ?>">
-                            <input type="submit" value="削除" name="contact" onclick="return confirm_test()"/>
-                        </form>
-                </div>
-                <div id="popup"	style="display: none;">
-                        削除しますか？<br />
-                        <button id="ok" onclick="okfunc()" style="margin: top 20px;">削除</button>
-                        <button id="no" onclick="nofunc()">キャンセル</button>
-                </div>
-                <?php endif; ?>
-            </div>
-        <?php endwhile; ?>
+                    while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
+                        <div class="msg">
+                            <!-- 一言表示 -->
+                            <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
+                            
+                            <!-- 作成日の表示 -->
+                            <div class="day">
+                                <a href="view.php?id=<?php echo h($pid); ?>">作成日：<?php echo h($created); ?></a>
+                            </div>
+                            
+                            <!-- メッセージ削除機能 -->
+                            <?php if ($_SESSION['id'] === $member_id): ?>
+                                <div class="delete">
+                                    <form method="POST" action="delete.php?id=<?php echo h($pid); ?>" onsubmit="return confirm_test()">
+                                        <input type="submit" value="削除"/>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endwhile; ?>
 <!------------------------------------------------------------------------------------------------------------------------------------->
+                </div>
         </div>
-        </div>
-    </div>
 </body>
 </html>
