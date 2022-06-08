@@ -27,7 +27,6 @@ $success = $stmt->execute();
 if(!$success){
     die($db->error);
 }
-
-header('Location: index.php'); 
+header('Location:' . $_SERVER['HTTP_REFERER']);
 exit();
 ?>
