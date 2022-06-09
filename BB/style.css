@@ -97,6 +97,10 @@ dd {
 	margin-bottom: 0.5em;
 }
 
+.propertys dd{
+	margin-bottom: 1.8em;
+}
+
 .required {
 	background-color: #BB1850;
 	color: #fff;
@@ -184,8 +188,9 @@ li {
 
  .titlebar {
 	font-weight:bold;          /* 太字にする */
-	padding-bottom: 15px;
-	border-bottom: 1px solid #d4d4d4;
+	padding-bottom: 25px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 25px;
  }
 
  .profile {

@@ -29,7 +29,7 @@ function lastJoin($value){
 <?php //最終アクセス日時
 function changeTheLog($value){
     $db = dbconnect();
-    $stmt = $db->prepare("update posts set access = CURRENT_TIME() where posts.id=$value");
+    $stmt = $db->prepare("update posts set access = CURRENT_TIME() where posts.hitokoto_id=$value");
     if(!$stmt) {
         die($db->error);
     }
@@ -40,7 +40,7 @@ function changeTheLog($value){
 <?php //最終編集日時
 function editTime($value){
     $db = dbconnect();
-    $stmt = $db->prepare("update profile set modified = CURRENT_TIME() where profile.member_id=$value");
+    $stmt = $db->prepare("update profile set modified = CURRENT_TIME() where profile.id=$value");
     if(!$stmt) {
         die($db->error);
     }
@@ -66,7 +66,7 @@ function loadPicture(int $id){
 <?php //自己紹介呼び出し
 function loadProfile(int $id){
     $db = dbconnect();
-    $stmt = $db->prepare('select profile_text from profile where member_id=?');
+    $stmt = $db->prepare('select profile_text from profile where id=?');
     if (!$stmt) {//エラー処理
         die($db->NULL);
     }
@@ -81,7 +81,7 @@ function loadProfile(int $id){
 <?php //profileの変更
 function changeTheProfile(string $profile,int $id){
     $db = dbconnect();
-    $stmt = $db->prepare('replace into profile (profile_text, member_id) values(?,?)'); //
+    $stmt = $db->prepare('replace into profile (profile_text, id) values(?,?)'); //
     if(!$stmt) {
         die($db->error);
     }
@@ -126,3 +126,4 @@ function changeThePhoto(string $filename,int $id){
     }
 }
 ?>
+

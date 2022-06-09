@@ -56,13 +56,13 @@ function confirm_test() {
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>
                     <h4>--- hitototo ---</h4>
                     <?php //一言データの取得sql
-                        $sth = $db->prepare('select id, message, member_id, created  from posts where member_id=? order by id desc'); //sqlのセット
+                        $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc'); //sqlのセット
                             if (!$sth) { //エラー処理
                                 die($db->error);
                             }
                         $sth->bind_param('i',$id);
                         $sth->execute();
-                        $sth->bind_result($pid, $message, $member_id, $created); //各変数に値を挿入
+                        $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
             
 
                     while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
@@ -72,13 +72,13 @@ function confirm_test() {
                             
                             <!-- 作成日の表示 -->
                             <div class="day">
-                                <a href="view.php?id=<?php echo h($pid); ?>">作成日：<?php echo h($created); ?></a>
+                                <a href="view.php?id=<?php echo h($hid); ?>">作成日：<?php echo h($created); ?></a>
                             </div>
                             
                             <!-- メッセージ削除機能 -->
-                            <?php if ($_SESSION['id'] === $member_id): ?>
+                            <?php if ($_SESSION['id'] === $id): ?>
                                 <div class="delete">
-                                    <form method="POST" action="delete.php?id=<?php echo h($pid); ?>" onsubmit="return confirm_test()">
+                                    <form method="POST" action="delete.php?id=<?php echo h($hid); ?>" onsubmit="return confirm_test()">
                                         <input type="submit" value="削除"/>
                                     </form>
                                 </div>

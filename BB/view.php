@@ -54,7 +54,7 @@ function confirm_test() {
                 </div>
 
                 <?php //SQL実行
-                    $stmt = $db->prepare('select p.id, p.member_id, p.message, p.created, m.name, m.picture from posts p, members m where p .id=? and m.id=p.member_id order by id desc');
+                    $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where p.hitokoto_id=? and m.id=p.id order by id desc');
                         if (!$stmt) {
                             die($db->error);
                     }

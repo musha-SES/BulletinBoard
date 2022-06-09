@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="mypage"><a href="mypage.php">MyPage</a></p>
             </div>
 
-            <div>
+            <div class=propertys>
                 <form action="" method="post" enctype="multipart/form-data">
                     <dt><h5>名前の変更</h5></dt>
                     <!-- 名前の変更 -->
@@ -90,11 +90,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <!-- 自己紹介文 -->
                         <dl>
                             <dd>
-                                <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo h($textProfile); ?></textarea>
+                                <div>
+                                    <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo h($textProfile); ?></textarea>
+                                </div>
+                                    <input type="submit" value="done"/>
                             </dd>
                         </dl>
-                    <input type="submit" value="done"/>
                 </form>
+
+                <!-- 退会 -->
+                <dt><h5>ヒトコトを退会する</h5></dt>
+                <dl>
+                    <dd>
+                        <a href="withdrawal.php">退会はこちら</a>
+                    </dd>
+                </dl>
             </div>
         </div>
     </div>

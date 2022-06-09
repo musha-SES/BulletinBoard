@@ -17,7 +17,7 @@ $db = dbconnect(); //DB接続
 //メッセージの投稿
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストがPOSTだった時
     $message = filter_input(INPUT_POST,'message', FILTER_SANITIZE_FULL_SPECIAL_CHARS);  //messageの文字処理
-    $stmt = $db->prepare('insert into posts (message, member_id) values(?,?)'); //
+    $stmt = $db->prepare('insert into posts (message, id) values(?,?)'); //
     if(!$stmt) {
         die($db->error);
     }
@@ -71,7 +71,7 @@ function confirm_test() {
                 </form>
 
                 <?php 
-                    $stmt = $db->prepare('select p.id, p.member_id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.member_id order by id desc'); //sqlのセット
+                    $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.id order by hitokoto_id desc'); //sqlのセット
                         if (!$stmt) {//エラー処理
                             die($db->error);
                     }

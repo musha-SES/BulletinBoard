@@ -18,7 +18,7 @@ if (!$post_id){
 }
 //DBデータ削除処理
 $db = dbconnect();
-$stmt = $db->prepare('delete from posts where id=? and member_id=? limit 1');
+$stmt = $db->prepare('delete from posts where hitokoto_id=? and id=? limit 1');
 if(!$stmt) {
     die($db->error);
 }
