@@ -48,18 +48,18 @@ function editTime($value){
 }
 ?>
 
-<?php //マイページ画像表示
-function loadPicture(int $id){
+<?php //userPage表示
+function loadMP(int $id){
     $db = dbconnect();
-    $stmt = $db->prepare('select picture from members where id=?'); //sqlのセット
-    if (!$stmt) {//エラー処理
-        die($db->error);
-    }
+    $stmt = $db->prepare('select name, picture from members where id=?'); //sqlのセット
+        if (!$stmt) { //エラー処理
+            die($db->error);
+        }
     $stmt->bind_param('i', $id);
-    $stmt->execute();//sql実行
-    $stmt->bind_result($picture); //各変数に値を挿入    
+    $stmt->execute();
+    $stmt->bind_result($name, $picture); //各変数に値を挿入
     $stmt->fetch();
-    return $picture;
+    return array($name, $picture);
 }
 ?>
 

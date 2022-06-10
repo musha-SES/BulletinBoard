@@ -2,14 +2,14 @@
 session_start();
 require('library.php');
 
-if (isset($_SESSION['id'])){ //値チェック
-    $id =$_SESSION['id'];
-    $name = $_SESSION['name'];
-    $photo = $_SESSION['photo'];
-    $profile = loadProfile($id);
-} else { 
-    echo("Not Found error");
-}
+ if (isset($_SESSION['id'])){ //値チェック
+     $id =$_SESSION['id'];
+      $name = $_SESSION['name'];
+      $photo = $_SESSION['photo'];
+      $profile = loadProfile($id);
+ } else { 
+     echo("Not Found error");
+ }
 
 $db = dbconnect(); //DB接続
 ?>
@@ -39,33 +39,33 @@ function confirm_test() {
             </div>
                 <div id="content">
                         <div class="titlebar">
-                        <p class="subject"><a href="index.php">Timeline</a></p>
-                        <p class="date"><a href="logout.php">Logout</a></p><br>
-                        <p class="property"><a href="property.php">Property</a></p>
+                        <p class="subject">&laquo<a href="index.php" class="example">Timeline</a></p>
+                        <p class="date"><a href="logout.php" class="example">Logout</a>&raquo</p><br>
+                        <p class="property"><a href="property.php" class="example">Property</a>&raquo</p>
                         </div>
-                            <!-- 名前とプロフィール画像の表示 -->
+                        <!-- 名前とプロフィール画像の表示 -->
                         <div class="profile">
                             <h3>[<?php echo h($name); ?>]</h3>
                                 <?php if ($photo): ?>
                                     <img src="member_picture/<?php echo h($photo); ?>" width="150" />
                                 <?php endif; ?><br>
-                            <a><?php echo $profile; ?></a>
+                            <a><?php echo loadProfile($id); ?></a>
                         </div>     
 <!------------------------------------------------------------------------------------------------------------------------------------->
                     
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>
                     <h4>--- hitototo ---</h4>
                     <?php //一言データの取得sql
-                        $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc'); //sqlのセット
-                            if (!$sth) { //エラー処理
-                                die($db->error);
-                            }
-                        $sth->bind_param('i',$id);
-                        $sth->execute();
-                        $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
-            
+                         $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc'); //sqlのセット
+                             if (!$sth) { //エラー処理
+                                 die($db->error);
+                             }
+                         $sth->bind_param('i',$id);
+                         $sth->execute();
+                         $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
+                    ?>
 
-                    while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
+                    <?php while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
                         <div class="msg">
                             <!-- 一言表示 -->
                             <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>

@@ -5,7 +5,6 @@ require('library.php');
 //値の有無チェック
 if (isset($_SESSION['id']) && isset($_SESSION['name'])){ 
     $id =$_SESSION['id'];
-    $name = $_SESSION['name'];
 } else {
     header('Location: login.php');
     exit;
@@ -50,7 +49,7 @@ function confirm_test() {
                 <div class="titlebar">
                     <p class="subject">&laquo<a href="index.php">Timeline</a></p>
                     <p class="date"><a href="logout.php">Logout</a>&raquo</p><br>
-                    <p class="mypage"><a href="mypage.php">Userpage</a>&raquo</p>
+                    <p class="mypage"><a href="mypage.php">Mypage</a>&raquo</p>
                 </div>
 
                 <?php //SQL実行

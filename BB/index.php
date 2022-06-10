@@ -6,7 +6,6 @@ require('library.php');
 if (isset($_SESSION['id']) && isset($_SESSION['name'])){ 
     $id =$_SESSION['id'];
     $name = $_SESSION['name'];
-    $photo = $_SESSION['photo'];
 } else { //入っていなければログインフォームに戻される
     header('Location: login.php');
     exit;
@@ -57,11 +56,11 @@ function confirm_test() {
             <h1>ヒトコト</h1>
         </div>
             <div id="content">
-                <div style="text-align: right"><a href="logout.php">Logout</a></div>
+                    <p class="date"><a href="logout.php" class="example" style="font-weight: bold;">Logout</a>&raquo</p><br>
                 <form action="" method="post">
                     <dl>
                         <!-- マイページ -->
-                        <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
+                        <dt><a href="mypage.php?id=<?php echo h($id); ?>" style="font-weight: bold;"><?php echo h($name); ?></a> please enter a message...</dt>
                         <!-- テキストエリア -->
                         <dd><textarea name="message" cols="50" rows="5"></textarea></dd>
                     </dl>
@@ -84,24 +83,34 @@ function confirm_test() {
                 while ($stmt->fetch()): //以下ループ処理 ?>
 <!--------------------------------------------- ヒトコトの一覧表示 ------------------------------------------------------------>
                 <div class="msg">
-                    <!-- トプ画表示 -->
-                    <?php if ($picture): ?> 
-                        <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
-                    <?php endif; ?>
-                    <!-- 一言表示 -->
-                    <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
-                    <!-- 最終アクセスの表示 -->
-                    <div class="day">
-                        <a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a>
-                    </div>
-                    <!-- メッセージ削除機能 -->
-                    <?php if ($_SESSION['id'] === $member_id): ?>
-                        <div class="delete">
-                            <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
-                                <input type="submit" value="削除"/>
-                            </form>
+                    <div class="cow">
+                        <!-- トプ画表示 -->
+                        <?php if ($picture): ?> 
+                            <p class="icon-circle"><img src ="member_picture/<?php echo h($picture); ?>"/></p>
+                        <?php endif; ?>
+                    </div>     
+                        <!-- 投稿者と一言表示 -->
+                        <?php if ($_SESSION['id'] === $member_id): ?>
+                            <a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>"style="font-weight: bold;"><?php echo h($name); ?></a>
+                            <br><?php echo h($message); ?>
+                        <?php else : ?>
+                            <p><dt><a href="userPage.php?id=<?php echo h($member_id); ?>" style="font-weight: bold;"><?php echo h($name); ?></a>
+                        </dt><?php echo h($message); ?></p>
+                        <?php endif; ?>
+
+                        <!-- 最終アクセスの表示 -->
+                        <div class="day">
+                            <a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a>
                         </div>
-                    <?php endif; ?>
+                        <!-- メッセージ削除機能 -->
+                        <?php if ($_SESSION['id'] === $member_id): ?>
+                            <div class="delete">
+                                <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
+                                    <input type="submit" value="削除"/>
+                                </form>
+                            </div>
+                            <?php endif; ?>
+                        
                 </div>
                 <?php endwhile; ?>
             </div>

@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_regenerate_id(); //session_idの再生成
         $_SESSION['id'] = $id;
         $_SESSION['name'] = $name;
-        $_SESSION['photo'] = loadPicture($id); //画像データの取得 
+        $result = loadMP($id);
+        $_SESSION['photo'] = $result[1]; //画像データの取得 
         lastJoin($id); //ログイン日時の更新
         header('Location: index.php');
         exit();
