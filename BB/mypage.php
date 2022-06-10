@@ -23,14 +23,14 @@ function confirm_test() {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ヒトコト</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ヒトコト</title>
 
-    <link rel="stylesheet" href="style.css"/>
-</head>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
 <body>
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
         <div id="wrap">
@@ -38,19 +38,19 @@ function confirm_test() {
                 <h1>ヒトコト --MyPage--</h1> 
             </div>
                 <div id="content">
-                    <div class="titlebar">
+                        <div class="titlebar">
                         <p class="subject"><a href="index.php">Timeline</a></p>
                         <p class="date"><a href="logout.php">Logout</a></p><br>
                         <p class="property"><a href="property.php">Property</a></p>
-                    </div>
-                    <!-- 名前とプロフィール画像の表示 -->
-                    <div class="profile">
-                        <h3>[<?php echo h($name); ?>]</h3>
-                        <?php if ($photo): ?>
-                            <img src="member_picture/<?php echo h($photo); ?>" width="150" />
-                        <?php endif; ?><br>
-                        <a><?php echo h($profile); ?></a>
-                    </div>     
+                        </div>
+                            <!-- 名前とプロフィール画像の表示 -->
+                        <div class="profile">
+                            <h3>[<?php echo h($name); ?>]</h3>
+                                <?php if ($photo): ?>
+                                    <img src="member_picture/<?php echo h($photo); ?>" width="150" />
+                                <?php endif; ?><br>
+                            <a><?php echo $profile; ?></a>
+                        </div>     
 <!------------------------------------------------------------------------------------------------------------------------------------->
                     
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>

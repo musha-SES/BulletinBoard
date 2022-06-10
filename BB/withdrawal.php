@@ -51,7 +51,6 @@ function EndUser(){
                 <h1>ヒトコト --退会手続き--</h1> 
             </div>
             <div id="content">
-
                 <div class="titlebar">
                     <p class="subject">&laquo<a href="property.php">property</a></p>
                 </div>

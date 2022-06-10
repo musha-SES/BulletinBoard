@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <dl>
                             <dd>
                                 <div>
-                                    <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo h($textProfile); ?></textarea>
+                                    <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo $textProfile; ?></textarea>
                                 </div>
                                     <input type="submit" value="done"/>
                             </dd>
