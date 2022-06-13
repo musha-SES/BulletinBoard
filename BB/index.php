@@ -12,24 +12,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])){
 }
 
 $db = dbconnect(); //DB接続
-
-//メッセージの投稿
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストがPOSTだった時
-    $message = filter_input(INPUT_POST,'message', FILTER_SANITIZE_FULL_SPECIAL_CHARS);  //messageの文字処理
-    $stmt = $db->prepare('insert into posts (message, id) values(?,?)'); //
-    if(!$stmt) {
-        die($db->error);
-    }
-
-    $stmt->bind_param('si', $message, $id);
-    $success = $stmt->execute();
-    if(!$success) {
-        die($db->error);
-    }
-
-    header('Location: index.php');
-    exit();
-}
 ?>
 <script>
 function confirm_test() {
@@ -52,23 +34,14 @@ function confirm_test() {
 
 <body>
     <div id="wrap">
-        <div id="head">
-            <h1>ヒトコト</h1>
-        </div>
+        <header>
+            <div id="head">
+                <h1>ヒトコト</h1>
+                <p class="date"><a href="logout.php" class="example" style="font-weight: bold; color:rgb(180, 180, 180);">Logout </a>&raquo</p>
+            </div>
+        </header>
+      <div class="wrapper">
             <div id="content">
-                    <p class="date"><a href="logout.php" class="example" style="font-weight: bold;">Logout</a>&raquo</p><br>
-                <form action="" method="post">
-                    <dl>
-                        <!-- マイページ -->
-                        <dt><a href="mypage.php?id=<?php echo h($id); ?>" style="font-weight: bold;"><?php echo h($name); ?></a> please enter a message...</dt>
-                        <!-- テキストエリア -->
-                        <dd><textarea name="message" cols="50" rows="5"></textarea></dd>
-                    </dl>
-                    <div>
-                        <p style="padding-bottom: 15px;"><input type="submit" value="done"/></p>
-                    </div>
-                </form>
-
                 <?php 
                     $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.id order by hitokoto_id desc'); //sqlのセット
                         if (!$stmt) {//エラー処理
@@ -83,39 +56,50 @@ function confirm_test() {
                 while ($stmt->fetch()): //以下ループ処理 ?>
 <!--------------------------------------------- ヒトコトの一覧表示 ------------------------------------------------------------>
                 <div class="msg">
-                    <div class="cow">
-                        <!-- トプ画表示 -->
-                        <?php if ($picture): ?> 
-                            <p class="icon-circle"><img src ="member_picture/<?php echo h($picture); ?>"/></p>
-                        <?php endif; ?>
-                    </div>     
-                        <!-- 投稿者と一言表示 -->
-                        <?php if ($_SESSION['id'] === $member_id): ?>
-                            <a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>"style="font-weight: bold;"><?php echo h($name); ?></a>
-                            <br><?php echo h($message); ?>
-                        <?php else : ?>
-                            <p><dt><a href="userPage.php?id=<?php echo h($member_id); ?>" style="font-weight: bold;"><?php echo h($name); ?></a>
-                        </dt><?php echo h($message); ?></p>
+                    <!-- トプ画表示 -->
+                        <?php if ($picture): ?>
+                            <?php if ($_SESSION['id'] === $member_id): ?>
+                                <div class="icon"><a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>"><img src ="member_picture/<?php echo h($picture); ?>"/></a></div>
+                                <?php else: ?>
+                                <div class="icon"><a href="userPage.php?id=<?php echo h($member_id); ?>"><img src ="member_picture/<?php echo h($picture); ?>"/></a></div>
+                            <?php endif; ?>
                         <?php endif; ?>
 
-                        <!-- 最終アクセスの表示 -->
-                        <div class="day">
-                            <a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a>
+                    <!-- 投稿者と一言表示 -->
+                        <div class="tag">
+                            <span><?php echo h($name); ?></span><br>
+                            <?php echo h($message); ?><br>
                         </div>
-                        <!-- メッセージ削除機能 -->
-                        <?php if ($_SESSION['id'] === $member_id): ?>
-                            <div class="delete">
+
+                    <!-- 作成日の表示 -->
+                        <div class="dayAndDelete">
+                            <div><a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a></div>
+                    <!-- メッセージ削除機能 -->
+                            <div><?php if ($_SESSION['id'] === $member_id): ?>
                                 <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
-                                    <input type="submit" value="削除"/>
+                                    <input type="image" src="images/cash.png"/>
                                 </form>
-                            </div>
-                            <?php endif; ?>
-                        
+                            <?php endif; ?></div>
+                        </div>
                 </div>
                 <?php endwhile; ?>
-            </div>
 <!--------------------------------------------------------------------------------------------------------------------------->
-        </div>
+            </div>
+        <footer>
+            <div class="blockArea">
+                <a href="index.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>Timeline</p></div>
+                </a>
+                <a href="hitokoto.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>HiToKoTo</p></div>
+                </a>
+                <a href="mypage.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>MyPage</p></div>
+                </a>
+                <div class="clear"></div>
+            </div>
+        </footer>
+       </div>
     </div>
 </body>
 </html>

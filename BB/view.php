@@ -44,14 +44,10 @@ function confirm_test() {
     <div id="wrap">
         <div id="head">
             <h1>ヒトコト</h1>
+            <p class="date"><a href="logout.php" class="example">Logout </a>&raquo</p><br>
         </div>
+        <div class="wrapper">
             <div id="content">
-                <div class="titlebar">
-                    <p class="subject">&laquo<a href="index.php">Timeline</a></p>
-                    <p class="date"><a href="logout.php">Logout</a>&raquo</p><br>
-                    <p class="mypage"><a href="mypage.php">Mypage</a>&raquo</p>
-                </div>
-
                 <?php //SQL実行
                     $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where p.hitokoto_id=? and m.id=p.id order by id desc');
                         if (!$stmt) {
@@ -65,31 +61,48 @@ function confirm_test() {
                     $stmt->bind_result($id, $member_id, $message, $created, $name, $picture);
                 if ($stmt->fetch()): ?>
 <!------------------------------------------------------- ヒトコトの表示 ------------------------------------------------------------>
-                        <div class="msg">
-                            <!-- トプ画表示 -->
+                    <div class="msg">
+                        <!-- トプ画表示 -->
                             <?php if ($picture): ?> 
-                                <img src ="member_picture/<?php echo h($picture); ?>" width="48" height="48" alt="" />
+                                <div class="icon"><a href="mypage.php?id=<?php echo h($_SESSION['id']); ?>"><img src ="member_picture/<?php echo h($picture); ?>"/></a></div>
                             <?php endif; ?>
-                            <!-- 一言表示 -->
-                            <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
 
-                            <!-- 作成日の表示 -->
-                            <div class="day"><a>作成日：<?php echo h($created); ?></a></div>
-
-                            <!-- メッセージ削除 -->
-                            <?php if ($_SESSION['id'] === $member_id): ?>
-                                <div class="delete">
-                                    <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
-                                        <input type="submit" value="削除"/>
-                                    </form>
-                                </div>
-                            <?php endif; ?>
+                        <!-- 一言表示 -->
+                        <div class="tag">
+                            <span><?php echo h($name); ?></span><br>
+                            <?php echo h($message); ?>
                         </div>
-                    <?php else: ?><p>その投稿は削除されたか、URLが間違えています</p>
+
+                        <!-- 作成日の表示 -->
+                        <div class="dayAndDelete">
+                            <div><a>作成日：<?php echo h($created); ?></a></div>
+                        <!-- メッセージ削除 -->
+                            <div><?php if ($_SESSION['id'] === $member_id): ?>
+                                <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
+                                    <input type="image" src="images/cash.png"/>
+                                </form>
+                            <?php endif; ?></div>
+                        </div>
+                    </div>
 <!---------------------------------------------------------------------------------------------------------------------------------->
+                <?php else: ?><p>その投稿は削除されたか、URLが間違えています</p>
                 <?php endif; ?>
+            </div>
+        <footer>
+            <div class="blockArea">
+                <a href="index.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>Timeline</p></div>
+                </a>
+                <a href="hitokoto.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>HiToKoTo</p></div>
+                </a>
+                <a href="mypage.php" style="text-decoration: none;">
+                    <div class="footer_tags"><p>MyPage</p></div>
+                </a>
+                <div class="clear"></div>
+            </div>
+        </footer>
         </div>
     </div>
 </body>
-
 </html>

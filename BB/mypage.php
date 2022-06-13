@@ -36,18 +36,18 @@ function confirm_test() {
         <div id="wrap">
             <div id="head">
                 <h1>ヒトコト --MyPage--</h1> 
+                <p class="date"><a href="logout.php">Logout </a></p><br>
+                <p class="property"><a href="property.php">Property </a></p>
             </div>
+            <div class="wrapper">
                 <div id="content">
-                        <div class="titlebar">
-                        <p class="subject">&laquo<a href="index.php" class="example">Timeline</a></p>
-                        <p class="date"><a href="logout.php" class="example">Logout</a>&raquo</p><br>
-                        <p class="property"><a href="property.php" class="example">Property</a>&raquo</p>
-                        </div>
                         <!-- 名前とプロフィール画像の表示 -->
                         <div class="profile">
-                            <h3>[<?php echo h($name); ?>]</h3>
+                            <h3><?php echo h($name); ?></h3>
                                 <?php if ($photo): ?>
-                                    <img src="member_picture/<?php echo h($photo); ?>" width="150" />
+                                    <div class="icon-circle">
+                                        <img src="member_picture/<?php echo h($photo); ?>"/>
+                                    </div>
                                 <?php endif; ?><br>
                             <a><?php echo loadProfile($id); ?></a>
                         </div>     
@@ -68,25 +68,40 @@ function confirm_test() {
                     <?php while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
                         <div class="msg">
                             <!-- 一言表示 -->
-                            <p><dt><span class="name"><a><?php echo h($name); ?></a></dt></span><?php echo h($message); ?></p>
-                            
-                            <!-- 作成日の表示 -->
-                            <div class="day">
-                                <a href="view.php?id=<?php echo h($hid); ?>">作成日：<?php echo h($created); ?></a>
+                            <div class="tag">
+                                <span><?php echo h($name); ?></span><br>
+                                <?php echo h($message); ?>
                             </div>
                             
+                            <!-- 作成日の表示 -->
+                            <div class="dayAndDelete">
+                                <div><a href="view.php?id=<?php echo h($hid); ?>"><?php echo h($created); ?></a></div>
                             <!-- メッセージ削除機能 -->
-                            <?php if ($_SESSION['id'] === $id): ?>
-                                <div class="delete">
+                                <div><?php if ($_SESSION['id'] === $id): ?>
                                     <form method="POST" action="delete.php?id=<?php echo h($hid); ?>" onsubmit="return confirm_test()">
-                                        <input type="submit" value="削除"/>
+                                        <input type="image" src="images/cash.png"/>
                                     </form>
-                                </div>
-                            <?php endif; ?>
+                                <?php endif; ?></div>
+                            </div>
                         </div>
                     <?php endwhile; ?>
 <!------------------------------------------------------------------------------------------------------------------------------------->
                 </div>
+            <footer>
+                <div class="blockArea">
+                    <a href="index.php" style="text-decoration: none;">
+                        <div class="footer_tags"><p>Timeline</p></div>
+                    </a>
+                    <a href="hitokoto.php" style="text-decoration: none;">
+                        <div class="footer_tags"><p>HiToKoTo</p></div>
+                    </a>
+                    <a href="mypage.php" style="text-decoration: none;">
+                        <div class="footer_tags"><p>MyPage</p></div>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+            </footer>
+            </div>
         </div>
 </body>
 </html>
