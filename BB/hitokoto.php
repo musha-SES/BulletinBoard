@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                 <a href="mypage.php">
                     <div class="footer_tags"><p>MyPage</p></div>
                 </a>
-                <div class="clear"></div>
+                <!-- <div class="clear"></div> -->
             </div>
         </footer>
         </div>
