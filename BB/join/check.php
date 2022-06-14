@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>会員登録</title>
 
-	<link rel="stylesheet" href="../style.css" />
+	<link rel="stylesheet" href="..\css\import.css" />
 </head>
 
 <body>

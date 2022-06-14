@@ -29,7 +29,7 @@ function confirm_test() {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ヒトコト</title>
 
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="css\import.css"/>
 </head>
 
 <body>
