@@ -48,19 +48,19 @@ function EndUser(){
 <body>
     <div id="wrap">
             <div id="head">
-                <h1>ヒトコト --退会手続き--</h1> 
+                <a href="index.php"><h1>ヒトコト --退会手続き--</h1></a>
             </div>
             <div id="content">
-                <div class="titlebar">
-                    <p class="subject">&laquo<a href="property.php">property</a></p>
+                <div class="header">
+                    &laquo;<a href="property.php">Property</a>
                 </div>
-                <div>
-                    <dt><h5>退会しますか？</h5></dt>
-                    <form method="POST" onsubmit="return EndUser()">
-                        <input type="hidden" name="is_delete" value="1">
-                        <input type="submit" value="退会する">
-                    </form>
-                </div>
+                    <div>
+                        <dt><h5>退会しますか？</h5></dt>
+                        <form method="POST" onsubmit="return EndUser()">
+                            <input type="hidden" name="is_delete" value="1">
+                            <input type="submit" value="退会する">
+                        </form>
+                    </div>
             </div>
     </div>
 </body>

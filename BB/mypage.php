@@ -35,9 +35,11 @@ function confirm_test() {
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
         <div id="wrap">
             <div id="head">
-                <h1>ヒトコト --MyPage--</h1> 
-                <p class="date"><a href="logout.php">Logout </a></p><br>
-                <p class="property"><a href="property.php">Property </a></p>
+                <a href="index.php"><h1>ヒトコト --Mypage--</h1></a>
+                <div class="header">
+                    <a href="logout.php"><p>Logout</p></a>
+                    <a href="property.php"><p>Property</p></a>                
+                </div>
             </div>
             <div class="wrapper">
                 <div id="content">
@@ -49,7 +51,7 @@ function confirm_test() {
                                         <img src="member_picture/<?php echo h($photo); ?>"/>
                                     </div>
                                 <?php endif; ?><br>
-                            <a><?php echo loadProfile($id); ?></a>
+                            <p><?php echo loadProfile($id); ?></p>
                         </div>     
 <!------------------------------------------------------------------------------------------------------------------------------------->
                     
@@ -70,12 +72,12 @@ function confirm_test() {
                             <!-- 一言表示 -->
                             <div class="tag">
                                 <span><?php echo h($name); ?></span><br>
-                                <?php echo h($message); ?>
+                                <p><?php echo h($message); ?></p>
                             </div>
                             
                             <!-- 作成日の表示 -->
                             <div class="dayAndDelete">
-                                <div><a href="view.php?id=<?php echo h($hid); ?>"><?php echo h($created); ?></a></div>
+                                <div class="day"><a href="view.php?id=<?php echo h($hid); ?>"><p><?php echo h($created); ?></p></a></div>
                             <!-- メッセージ削除機能 -->
                                 <div><?php if ($_SESSION['id'] === $id): ?>
                                     <form method="POST" action="delete.php?id=<?php echo h($hid); ?>" onsubmit="return confirm_test()">
@@ -89,13 +91,15 @@ function confirm_test() {
                 </div>
             <footer>
                 <div class="blockArea">
-                    <a href="index.php" style="text-decoration: none;">
+                    <a href="index.php">
                         <div class="footer_tags"><p>Timeline</p></div>
                     </a>
-                    <a href="hitokoto.php" style="text-decoration: none;">
-                        <div class="footer_tags"><p>HiToKoTo</p></div>
+                    <p1>|</p1>
+                    <a href="hitokoto.php">
+                        <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
                     </a>
-                    <a href="mypage.php" style="text-decoration: none;">
+                    <p1>|</p1>
+                    <a href="mypage.php">
                         <div class="footer_tags"><p>MyPage</p></div>
                     </a>
                     <div class="clear"></div>

@@ -57,55 +57,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div id="wrap">
         <div id="head">
-            <h1>ヒトコト --Property--</h1> 
+        <a href="index.php"><h1>ヒトコト</h1></a> 
         </div>
-        <div id="content">
-            <div class="titlebar">
-                <p class="subject"><a href="index.php">Timeline</a></p>
-                <p class="date"><a href="logout.php">Logout</a></p><br>
-                <p class="mypage"><a href="mypage.php">MyPage</a></p>
+        <div class="wrapper">
+            <div id="content">
+                <div class=propertys>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <h5>名前の変更</h5>
+                        <!-- 名前の変更 -->
+                            <dl>
+                                <dd><input type="text" name="name" cols="20" rows="2" value="<?php echo h($nameName);?>"></input></dd>
+                            </dl>
+
+                        <h5>プロフィール画像の変更</h5>
+                        <!-- 画像の変更 -->
+                            <dl>
+                                <dd>
+                                    <input type="file" name="photo" size="35" value=""/>
+                                        <?php if (isset($error['photo']) && $error['photo'] === 'type'): ?>
+                                            <p class="error">* 「.png」または「.jpg」の画像を指定してください</p>
+                                        <?php endif; ?>
+                                    <p class="error">* 恐れ入りますが、画像を改めて指定してください</p>
+                                </dd>
+                            </dl>
+                    
+                        <h5>自己紹介の編集</h5>
+                        <!-- 自己紹介文 -->
+                            <dl>
+                                <dd>
+                                    <div>
+                                        <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo $textProfile; ?></textarea>
+                                    </div>
+                                        <input type="submit" value="done"/>
+                                </dd>
+                            </dl>
+                    </form>
+
+                    <!-- 退会 -->
+                    <h5>ヒトコトを退会する</h5>
+                    <dl>
+                        <dd>
+                            <a href="withdrawal.php">退会はこちら</a>
+                        </dd>
+                    </dl>
+                </div>
             </div>
-
-            <div class=propertys>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <dt><h5>名前の変更</h5></dt>
-                    <!-- 名前の変更 -->
-                        <dl>
-                            <dd><input type="text" name="name" cols="20" rows="2" value="<?php echo h($nameName);?>"></input></dd>
-                        </dl>
-
-                    <dt><h5>プロフィール画像の変更</h5></dt>
-                    <!-- 画像の変更 -->
-                        <dl>
-                            <dd>
-                                <input type="file" name="photo" size="35" value=""/>
-                                    <?php if (isset($error['photo']) && $error['photo'] === 'type'): ?>
-                                        <p class="error">* 「.png」または「.jpg」の画像を指定してください</p>
-                                    <?php endif; ?>
-                                <p class="error">* 恐れ入りますが、画像を改めて指定してください</p>
-                            </dd>
-                        </dl>
-                
-                    <dt><h5>自己紹介の編集</h5></dt>
-                    <!-- 自己紹介文 -->
-                        <dl>
-                            <dd>
-                                <div>
-                                    <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo $textProfile; ?></textarea>
-                                </div>
-                                    <input type="submit" value="done"/>
-                            </dd>
-                        </dl>
-                </form>
-
-                <!-- 退会 -->
-                <dt><h5>ヒトコトを退会する</h5></dt>
-                <dl>
-                    <dd>
-                        <a href="withdrawal.php">退会はこちら</a>
-                    </dd>
-                </dl>
-            </div>
+            <footer>
+                <div class="blockArea">
+                    <a href="index.php">
+                        <div class="footer_tags"><p>Timeline</p></div>
+                    </a>
+                    <p>|</p>
+                    <a href="hitokoto.php">
+                        <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                    </a>
+                    <p>|</p>
+                    <a href="mypage.php">
+                        <div class="footer_tags"><p>MyPage</p></div>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+            </footer>
         </div>
     </div>
 </body>

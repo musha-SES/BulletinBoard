@@ -31,32 +31,49 @@ body {
 	background:  #89c7de;
 	color: #fff;
 	padding: 20px;
-	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#head .header p{
+	font-size: 120%;
+	color: #fff;
+	text-align: right;
+}
+#head .header p:hover{
+	color:rgb(0, 124, 248);
 }
 
 .wrapper{
     min-height: 100vh;
-   position: relative;/*←相対位置*/
-	padding-bottom: 120px;/*←footerの高さ*/
-    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+	padding-bottom: 60px;
+	box-sizing: border-box;
+	
 }
 
 footer{
-    width: 100%;
+    width: 802px;
     background-color: #89c7de;
     color: #fff;
-    text-align: center;
-    padding: 30px 0;
-
-    position: absolute;/*←絶対位置*/
-    bottom: 0; /*下に固定*/
+    padding: 15px 0;
+	position: fixed;
+	bottom: 0;
+}
+a {
+	text-decoration: none;
+}
+a:hover{
+	color: rgb(0, 124, 248);
 }
 
 h1 {
+	color: #fff;
 	border-left: 10px solid rgb(0, 179, 255);
 	padding-left: 15px;
 	font-size: 197%;
 	font-weight: bold;
+	float: left;
 }
 
 h2 {
@@ -82,6 +99,7 @@ h5 {
 	font-weight: bold;
 	margin: 15px;
 	border-bottom: 1px solid #ccc;
+	text-align: left;
 }
 
 #content {
@@ -96,10 +114,6 @@ h5 {
 
 * html #content {
 	height: 490px;
-}
-
-p {
-	line-height: 1.2em;
 }
 
 dl {
@@ -192,17 +206,15 @@ li {
 .dayAndDelete input{
 	width: 17;
 }
+.dayAndDelete .day p:hover{
+	color:rgb(0, 124, 248);
+}
 
 .subject {
 	text-align: left;  /* 文章を左寄せする(※) */
 	float: left;     /* 左端に寄せて、後続を右側へ回り込ませる */
  }
- .date {
-	text-align: right; /* 文章を右寄せする */
- }
- .property {
-	 text-align: right;
- }
+
  .profile {
 	text-align: center;
 	padding: 15px 15px;
@@ -236,10 +248,6 @@ li {
 		border-bottom: 1px solid #ccc;
  }
 
- .example{
-    text-underline-offset:0.2em;
-}
-
 .icon{
 	width: 50px;
 	height: 50px;
@@ -260,6 +268,9 @@ li {
 	bottom: 0;
 	margin: auto;
   }
+.icon img:hover{
+	opacity: 0.5;
+}
 
 .tag span{
 	border-left: 6px solid rgb(0, 179, 255);
@@ -267,6 +278,9 @@ li {
 	padding: 0 5px;
 	float: left;
 	font-weight: 600;
+}
+.tag p{
+	padding: 5px;
 }
 
 .linkFont a{
@@ -280,7 +294,8 @@ li {
 
 .blockArea{
 	display: flex;
-	justify-content: center;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 
@@ -295,8 +310,19 @@ li {
 	color: #fff;
 }
 
+.blockArea p{
+	font-size: 180%;
+}
+.blockArea .footer_tags img:hover{
+	opacity: 0.5;
+}
+
 .blockArea .footer_tags p:hover{
-	color: #000;
+	color: rgb(0, 124, 248);
+}
+.blockArea p1{
+	font-size: 300%;
+	font-weight: 400;
 }
 
 .clear{

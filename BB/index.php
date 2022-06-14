@@ -34,12 +34,9 @@ function confirm_test() {
 
 <body>
     <div id="wrap">
-        <header>
-            <div id="head">
-                <h1>ヒトコト</h1>
-                <p class="date"><a href="logout.php" class="example" style="font-weight: bold; color:rgb(180, 180, 180);">Logout </a>&raquo</p>
-            </div>
-        </header>
+        <div id="head">
+            <a href="index.php"><h1>ヒトコト</h1></a>
+        </div>
       <div class="wrapper">
             <div id="content">
                 <?php 
@@ -68,12 +65,12 @@ function confirm_test() {
                     <!-- 投稿者と一言表示 -->
                         <div class="tag">
                             <span><?php echo h($name); ?></span><br>
-                            <?php echo h($message); ?><br>
+                            <p><?php echo h($message); ?></p>
                         </div>
 
                     <!-- 作成日の表示 -->
                         <div class="dayAndDelete">
-                            <div><a href="view.php?id=<?php echo h($id); ?>"><?php echo h($created); ?></a></div>
+                            <div class="day"><a href="view.php?id=<?php echo h($id); ?>"><p><?php echo h($created); ?></p></a></div>
                     <!-- メッセージ削除機能 -->
                             <div><?php if ($_SESSION['id'] === $member_id): ?>
                                 <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
@@ -87,13 +84,15 @@ function confirm_test() {
             </div>
         <footer>
             <div class="blockArea">
-                <a href="index.php" style="text-decoration: none;">
+                <a href="index.php">
                     <div class="footer_tags"><p>Timeline</p></div>
                 </a>
-                <a href="hitokoto.php" style="text-decoration: none;">
-                    <div class="footer_tags"><p>HiToKoTo</p></div>
+                <p1>|</p1>
+                <a href="hitokoto.php">
+                    <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
                 </a>
-                <a href="mypage.php" style="text-decoration: none;">
+                <p1>|</p1>
+                <a href="mypage.php">
                     <div class="footer_tags"><p>MyPage</p></div>
                 </a>
                 <div class="clear"></div>

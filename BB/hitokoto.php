@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
     header('Location: index.php');
     exit();
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                                 <!-- マイページ -->
                                 <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
                                 <!-- テキストエリア -->
-                                <dd><textarea name="message" cols="50" rows="5"></textarea></dd>
+                                <dd><textarea name="message" cols="50" rows="5" placeholder="ヒトコト" autofocus required></textarea></dd>
                             </dl>
                         </div>
                         <div>
@@ -65,13 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                 </div>
         <footer>
             <div class="blockArea">
-                <a href="index.php" style="text-decoration: none;">
+                <a href="index.php">
                     <div class="footer_tags"><p>Timeline</p></div>
                 </a>
-                <a href="hitokoto.php" style="text-decoration: none;">
-                    <div class="footer_tags"><p>HiToKoTo</p></div>
+                <p1>|</p1>
+                <a href="hitokoto.php">
+                    <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
                 </a>
-                <a href="mypage.php" style="text-decoration: none;">
+                <p1>|</p1>
+                <a href="mypage.php">
                     <div class="footer_tags"><p>MyPage</p></div>
                 </a>
                 <div class="clear"></div>
