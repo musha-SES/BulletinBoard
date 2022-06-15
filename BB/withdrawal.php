@@ -58,7 +58,7 @@ function EndUser(){
                         <dt><h5>退会しますか？</h5></dt>
                         <form method="POST" onsubmit="return EndUser()">
                             <input type="hidden" name="is_delete" value="1">
-                            <input type="submit" value="退会する">
+                            <input type="submit" class="button" value="退会する">
                         </form>
                     </div>
             </div>

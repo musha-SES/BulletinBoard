@@ -44,42 +44,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
 </head>
 <body>
     <div id="wrap">
-            <div id="head">
-                <h1>ヒトコト</h1>
-            </div>
-        <div class="wrapper">
+        <div id="head">
+            <a href="index.php"><h1>ヒトコト</h1></a>
+        </div>
+            <div class="wrapper">
                 <div id="content">
-                    <form action="" method="post">
-                        <div class="linkFont">
-                            <dl>
-                                <!-- マイページ -->
-                                <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
-                                <!-- テキストエリア -->
-                                <dd><textarea name="message" cols="50" rows="5" placeholder="ヒトコト" autofocus required></textarea></dd>
-                            </dl>
-                        </div>
+                        <form action="" method="post">
+                            <div class="linkFont">
+                                <dl>
+                                    <!-- マイページ -->
+                                    <dt><a href="mypage.php?id=<?php echo h($id); ?>"><?php echo h($name); ?></a> please enter a message...</dt>
+                                    <!-- テキストエリア -->
+                                    <dd><textarea name="message" cols="50" rows="5" placeholder="ヒトコト" autofocus required></textarea></dd>
+                                </dl>
+                            </div>
                         <div>
-                            <p style="padding-bottom: 15px;"><input type="submit" value="POST"/></p>
+                            <p style="padding-bottom: 15px;"><input type="submit" class="button" value="POST"/></p>
                         </div>
                     </form>
                 </div>
-        <footer>
-            <div class="blockArea">
-                <a href="index.php">
-                    <div class="footer_tags"><p>Timeline</p></div>
-                </a>
-                <p1>|</p1>
-                <a href="hitokoto.php">
-                    <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
-                </a>
-                <p1>|</p1>
-                <a href="mypage.php">
-                    <div class="footer_tags"><p>MyPage</p></div>
-                </a>
-                <!-- <div class="clear"></div> -->
+                <footer>
+                    <div class="blockArea">
+                        <a href="index.php">
+                            <div class="footer_tags"><p>Timeline</p></div>
+                        </a>
+                        <p1>|</p1>
+                        <a href="hitokoto.php">
+                            <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                        </a>
+                        <p1>|</p1>
+                        <a href="mypage.php">
+                            <div class="footer_tags"><p>MyPage</p></div>
+                        </a>
+                    </div>
+                </footer>
             </div>
-        </footer>
-        </div>
     </div>
 </body>
 </html>

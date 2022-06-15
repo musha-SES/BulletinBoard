@@ -94,22 +94,22 @@ function confirm_test() {
                 <?php else: ?><p>その投稿は削除されたか、URLが間違えています</p>
                 <?php endif; ?>
             </div>
-        <footer>
-            <div class="blockArea">
-                <a href="index.php">
-                    <div class="footer_tags"><p>Timeline</p></div>
-                </a>
-                <p1>|</p1>
-                <a href="hitokoto.php">
-                    <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
-                </a>
-                <p1>|</p1>
-                <a href="mypage.php">
-                    <div class="footer_tags"><p>MyPage</p></div>
-                </a>
-                <!-- <div class="clear"></div> -->
-            </div>
-        </footer>
+                <footer>
+                    <div class="blockArea">
+                        <a href="index.php">
+                            <div class="footer_tags"><p>Timeline</p></div>
+                        </a>
+                        <p1>|</p1>
+                        <a href="hitokoto.php">
+                            <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                        </a>
+                        <p1>|</p1>
+                        <a href="mypage.php">
+                            <div class="footer_tags"><p>MyPage</p></div>
+                        </a>
+                        <!-- <div class="clear"></div> -->
+                    </div>
+                </footer>
         </div>
     </div>
 </body>

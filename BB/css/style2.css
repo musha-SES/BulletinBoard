@@ -12,16 +12,16 @@ Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
 version: 2.8.1
 */
-body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:90% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 
 body {
-	background: url(../images/bg_main.png) top center repeat-y #eeeeee;
+	background-color: #eeeeee;
+	font-size: 70%;
 }
 
-#wrap {
-	width: 802px;
-	margin: 0 auto;
+textarea{
+	width: 80%;
 }
 
 #head {
@@ -41,19 +41,37 @@ body {
 	color: #fff;
 	text-align: right;
 }
+
 #head .header p:hover{
 	color:rgb(0, 124, 248);
 }
 
+#wrap {
+	width: 98%;
+	height: 100vh;
+	margin: 0 auto;
+}
+
 .wrapper{
-    min-height: 100vh;
-	padding-bottom: 60px;
+	min-height: 100vh;
 	box-sizing: border-box;
 	
 }
 
+#content {
+	padding: 20px;
+	background: #ffffff;
+	width: auto;
+	height: 100vh;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	font-size: 153.9%;
+	border-left: 5px double #dcdcdc;
+	border-right: 5px double #dcdcdc;
+}
+
 footer{
-    width: 802px;
+    width: 98%;
     background-color: #89c7de;
     color: #fff;
     padding: 15px 0;
@@ -102,19 +120,6 @@ h5 {
 	text-align: left;
 }
 
-#content {
-	padding: 20px;
-	background: #ffffff;
-	width: 720px;
-	min-height: auto;
-	margin: 0 auto;
-	margin-bottom: 10px;
-	font-size: 153.9%;
-}
-
-* html #content {
-	height: 490px;
-}
 
 dl {
 	margin-bottom: 10px;
@@ -292,6 +297,10 @@ li {
 	color:rgb(35, 35, 35) !important;
 }
 
+.linkFont dt{
+	margin: 15px 0px;
+}
+
 .blockArea{
 	display: flex;
 	align-items: center;
@@ -328,3 +337,23 @@ li {
 .clear{
 	clear:both;
 }
+
+.button {
+	display       : inline-block;
+	border-radius : 20%;          /* 角丸       */
+	font-size     : 8pt;        /* 文字サイズ */
+	text-align    : center;      /* 文字位置   */
+	cursor        : pointer;     /* カーソル   */
+	padding       : 11px 11px;   /* 余白       */
+	background    : rgb(0, 179, 255, 0.333);     /* 背景色     */
+	color         : #000;     /* 文字色     */
+	line-height   : 1em;         /* 1行の高さ  */
+	transition    : .3s;         /* なめらか変化 */
+	box-shadow    : 2px 2px 2px #666666;  /* 影の設定 */
+	border        : 2px solid rgba(0, 124, 248, 0.223);    /* 枠の指定 */
+  }
+  .button:hover {
+	box-shadow    : none;        /* カーソル時の影消去 */
+	color         : #000;     /* 背景色     */
+	background    : rgb(0, 124, 248);  /* 文字色     */
+  }

@@ -2,4 +2,5 @@
 
 @import "style.css";
 
-/* @import "style2.css" screen and (max-width: 811px); */
+@import "style2.css" screen and (max-width: 801px);
+
