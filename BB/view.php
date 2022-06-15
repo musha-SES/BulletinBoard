@@ -44,9 +44,6 @@ function confirm_test() {
     <div id="wrap">
         <div id="head">
             <a href="index.php"><h1>ヒトコト</h1></a>
-            <div class="header">
-               <a href="logout.php"><p>Logout</p></a>
-            </div>  
         </div>
         <div class="wrapper">
             <div id="content">
@@ -91,7 +88,7 @@ function confirm_test() {
                         </div>
                     </div>
 <!---------------------------------------------------------------------------------------------------------------------------------->
-                <?php else: ?><p>その投稿は削除されたか、URLが間違えています</p>
+                <?php else: ?><p>そのヒトコトは削除されました</p>
                 <?php endif; ?>
             </div>
                 <footer>

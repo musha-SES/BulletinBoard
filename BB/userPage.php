@@ -24,14 +24,14 @@ $db = dbconnect(); //DB接続
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
         <div id="wrap">
             <div id="head">
-                <a href="index.php"><h1>ヒトコト --userPage--</h1></a> 
+                <a href="index.php"><h1>ヒトコト --Userpage--</h1></a> 
             </div>
                 <div class="wrapper">
                     <div id="content">
                             <!-- 名前とプロフィール画像の表示 -->
                             <?php $result = loadMP($id); ?>
                                 <div class="profile">
-                                    <h3>[<?php echo h($result[0]); ?>]</h3>
+                                    <h3><?php echo h($result[0]); ?></h3>
                                         <?php if ($result[1]): ?>
                                             <div class="icon-circle">
                                                 <img src="member_picture/<?php echo h($result[1]); ?>" width="150" />
