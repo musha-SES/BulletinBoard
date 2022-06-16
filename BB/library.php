@@ -127,3 +127,14 @@ function changeThePhoto(string $filename,int $id){
 }
 ?>
 
+<?php //mypage,userpageの最大ページ数を求める
+function max_pageMU(int $id){
+    $db = dbconnect();  
+    $counts = $db->prepare('select count(*) as cnt from posts where id=?');
+    $counts->bind_param('i',$id);
+    $counts->execute();//sql実行
+    $counts->bind_result($cnt); //各変数に値を挿入    
+    $counts->fetch();
+    return $cnt;
+}
+?>

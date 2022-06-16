@@ -28,7 +28,7 @@ textarea{
 	border-left: 1px solid #d4d4d4;
 	border-right: 1px solid #d4d4d4;
 	border-bottom: 1px solid #d4d4d4;
-	background:  #89c7de;
+	background:  #bbb083;
 	color: #fff;
 	padding: 20px;
 	display: flex;
@@ -43,7 +43,7 @@ textarea{
 }
 
 #head .header p:hover{
-	color:rgb(0, 124, 248);
+	color:rgb(190, 162, 105);
 }
 
 #wrap {
@@ -60,9 +60,10 @@ textarea{
 
 #content {
 	padding: 20px;
-	background: #ffffff;
+	background: #fffcf700;
 	width: auto;
 	height: 100vh;
+	min-height: 980px;
 	margin: 0 auto;
 	margin-bottom: 10px;
 	font-size: 153.9%;
@@ -72,7 +73,7 @@ textarea{
 
 footer{
     width: 98%;
-    background-color: #89c7de;
+    background-color: #bbb083;
     color: #fff;
     padding: 15px 0;
 	position: fixed;
@@ -82,12 +83,12 @@ a {
 	text-decoration: none;
 }
 a:hover{
-	color: rgb(0, 124, 248);
+	color: rgb(190, 162, 105);
 }
 
 h1 {
 	color: #fff;
-	border-left: 10px solid rgb(0, 179, 255);
+	border-left: 10px solid rgb(233, 222, 175);
 	padding-left: 15px;
 	font-size: 197%;
 	font-weight: bold;
@@ -186,7 +187,7 @@ li {
 
 .msg {
 	clear: both;
-	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	padding: 10px 0 ;
 }
 .msg img {
@@ -212,7 +213,7 @@ li {
 	width: 17;
 }
 .dayAndDelete .day p:hover{
-	color:rgb(0, 124, 248);
+	color:rgb(190, 162, 105);
 }
 
 .subject {
@@ -278,8 +279,8 @@ li {
 }
 
 .tag span{
-	border-left: 6px solid rgb(0, 179, 255);
-	background-color: rgba(0, 179, 255, 0.333);
+	border-left: 6px solid rgb(233, 222, 175);
+	background-color: rgb(233, 222, 175, 0.333);
 	padding: 0 5px;
 	float: left;
 	font-weight: 600;
@@ -289,8 +290,8 @@ li {
 }
 
 .linkFont a{
-	border-left: 6px solid rgb(0, 179, 255);
-	background-color: rgba(0, 179, 255, 0.333);
+	border-left: 6px solid rgb(233, 222, 175);
+	background-color: rgb(233, 222, 175, 0.333);
 	padding: 4px 5px;
 	font-weight: bold; 
 	text-underline-offset: 0.1em;
@@ -327,7 +328,7 @@ li {
 }
 
 .blockArea .footer_tags p:hover{
-	color: rgb(0, 124, 248);
+	color: rgb(190, 162, 105);
 }
 .blockArea p1{
 	font-size: 300%;
@@ -345,15 +346,37 @@ li {
 	text-align    : center;      /* 文字位置   */
 	cursor        : pointer;     /* カーソル   */
 	padding       : 11px 11px;   /* 余白       */
-	background    : rgb(0, 179, 255, 0.333);     /* 背景色     */
+	background    : rgb(233, 222, 175);     /* 背景色     */
 	color         : #000;     /* 文字色     */
 	line-height   : 1em;         /* 1行の高さ  */
 	transition    : .3s;         /* なめらか変化 */
 	box-shadow    : 2px 2px 2px #666666;  /* 影の設定 */
-	border        : 2px solid rgba(0, 124, 248, 0.223);    /* 枠の指定 */
+	border        : 2px solid rgb(233, 222, 175, 0.333);    /* 枠の指定 */
   }
   .button:hover {
 	box-shadow    : none;        /* カーソル時の影消去 */
 	color         : #000;     /* 背景色     */
-	background    : rgb(0, 124, 248);  /* 文字色     */
+	background    : rgb(190, 162, 105);  /* 文字色     */
   }
+
+.pageNation{
+	margin: 10px 0;
+}
+.pageNation span1:hover{
+	color: rgb(190, 162, 105);;
+}
+.pageNation span2:hover{
+	color: rgb(190, 162, 105);;
+}
+.pageNation span1{
+	color: #000;
+	border-left: 6px solid rgb(233, 222, 175);
+	background-color: rgb(233, 222, 175, 0.333);
+	padding: 5px 5px;
+}
+.pageNation span2{
+	color: #000;
+	border-right: 6px solid rgb(233, 222, 175);
+	background-color: rgb(233, 222, 175, 0.333);
+	padding: 5px 5px;
+}

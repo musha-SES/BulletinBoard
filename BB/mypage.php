@@ -12,6 +12,10 @@ require('library.php');
  }
 
 $db = dbconnect(); //DB接続
+
+/* 最大ページ数を求める */
+$count = max_pageMU($id);
+$max_page =  floor(($count+1)/5+1);
 ?>
 <script>
 //確認ポップアップ表示
@@ -58,13 +62,16 @@ function confirm_test() {
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>
                     <h4>--- hitototo ---</h4>
                     <?php //一言データの取得sql
-                         $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc'); //sqlのセット
+                         $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc limit ? , 5'); //sqlのセット
                              if (!$sth) { //エラー処理
                                  die($db->error);
                              }
-                         $sth->bind_param('i',$id);
-                         $sth->execute();
-                         $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
+                            $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+                            $page = ($page ?: 1);
+                            $start = ($page - 1) * 5;
+                            $sth->bind_param('ii',$id,$start);
+                            $sth->execute();
+                            $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
                     ?>
 
                     <?php while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
@@ -87,6 +94,15 @@ function confirm_test() {
                             </div>
                         </div>
                     <?php endwhile; ?>
+                    <!-- ページネーション -->
+                    <div class="pageNation">
+                                <?php if ($page>1): ?>
+                                    <a href="?page=<?php echo $page-1; ?>"><span1><?php echo $page-1; ?>ページ目へ</span1></a>
+                                <?php endif; ?>
+                                <?php if ($count > $page*5 && $page < $max_page): ?>
+                                    <a href="?page=<?php echo $page+1; ?>"><span2><?php echo $page+1; ?>ページ目へ</span2></a>
+                                <?php endif; ?>
+                    </div>
 <!------------------------------------------------------------------------------------------------------------------------------------->     
                 </div>
                   <footer>

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
             <a href="index.php"><h1>ヒトコト</h1></a>
         </div>
             <div class="wrapper">
-                <div id="content">
+                <div id="content" style="max-height: 900px;">
                         <form action="" method="post">
                             <div class="linkFont">
                                 <dl>
@@ -58,16 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                                     <dd><textarea name="message" cols="50" rows="5" placeholder="ヒトコト" autofocus required></textarea></dd>
                                 </dl>
                             </div>
-                        <div>
-                            <p style="padding-bottom: 15px;"><input type="submit" class="button" value="POST"/></p>
-                        </div>
-                    </form>
-                </div>
+                            <div>
+                                <p style="padding-bottom: 15px;"><input type="submit" class="button" value="POST"/></p>
+                            </div>
+                        </form>
+                </div>        
                 <footer>
                     <div class="blockArea">
                         <a href="index.php">
                             <div class="footer_tags"><p>Timeline</p></div>
-                        </a>
+                        </a>                            
                         <p1>|</p1>
                         <a href="hitokoto.php">
                             <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //ブラウザのリクエストが
                         <p1>|</p1>
                         <a href="mypage.php">
                             <div class="footer_tags"><p>MyPage</p></div>
-                        </a>
+                        </a>                        
                     </div>
                 </footer>
             </div>

@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 session_start();
 require('library.php');
 
@@ -12,6 +15,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])){
 }
 
 $db = dbconnect(); //DB接続
+
+/* 最大ページ数を求める */
+$counts = $db->query('select count(*) as cnt from posts');
+$count = $counts->fetch_assoc();
+$max_page = floor(($count['cnt']+1)/5+1);
+$pa = (int)$_GET["page"];
 ?>
 <script>
 function confirm_test() {
@@ -40,10 +49,14 @@ function confirm_test() {
             <div class="wrapper">
                 <div id="content">
                     <?php 
-                        $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.id order by hitokoto_id desc'); //sqlのセット
+                        $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.id order by hitokoto_id desc limit ?,5'); //sqlのセット
                             if (!$stmt) {//エラー処理
                                 die($db->error);
                         }
+                        $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+                        $page = ($page ?: 1);
+                        $start = ($page - 1) * 5;
+                        $stmt->bind_param('i', $start);
                         $success = $stmt->execute();//sql実行。エラー処理のために変数に挿入
                             if (!$success) {//エラー処理
                                 die($db->error);
@@ -73,13 +86,22 @@ function confirm_test() {
                                 <div class="day"><a href="view.php?id=<?php echo h($id); ?>"><p><?php echo h($created); ?></p></a></div>
                         <!-- メッセージ削除機能 -->
                                 <div><?php if ($_SESSION['id'] === $member_id): ?>
-                                    <form method="POST" action="delete.php?id=<?php echo h($id); ?>" onsubmit="return confirm_test()">
+                                    <form method="POST" action="delete.php?id=<?php echo h($id);?>" onsubmit="return confirm_test()">
                                         <input type="image" src="images/cash.png"/>
                                     </form>
                                 <?php endif; ?></div>
                             </div>
                     </div>
                     <?php endwhile; ?>
+                    <!-- ページネーション -->
+                    <div class="pageNation">
+                            <?php if ($page > 1): ?>
+                                <a href="?page=<?php echo $page-1; ?>"><span1><?php echo $page-1; ?>ページ目へ</span1></a>
+                            <?php endif; ?>
+                            <?php if($count['cnt'] > $page*5 && $page < $max_page ): ?>    
+                                <a href="?page=<?php echo $page+1; ?>"><span2><?php echo $page+1; ?>ページ目へ</span2></a>
+                            <?php endif; ?>
+                    </div>
 <!--------------------------------------------------------------------------------------------------------------------------->
                 </div>
                 <footer>

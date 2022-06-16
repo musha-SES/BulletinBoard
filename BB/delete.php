@@ -16,6 +16,7 @@ if (!$post_id){
     header('Location: index.php');
     exit();
 }
+
 //DBデータ削除処理
 $db = dbconnect();
 $stmt = $db->prepare('delete from posts where hitokoto_id=? and id=? limit 1');
@@ -27,6 +28,7 @@ $success = $stmt->execute();
 if(!$success){
     die($db->error);
 }
+
 header('Location:' . $_SERVER['HTTP_REFERER']);
 exit();
 ?>
