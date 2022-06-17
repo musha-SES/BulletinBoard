@@ -1,28 +1,34 @@
 <?php
-session_start();
-require('library.php');
+/*--------------------------------------------------------------------------*/
+// 機能：ログインユーザーのマイページ
+// 設定した名前と画像の表示、その下に自分が今まで投稿したヒトコトが表示される
+// ここからのみログアウトと登録情報の変更・退会ができる設定ページにジャンプできる
+/*--------------------------------------------------------------------------*/
+    session_start();
+    require('library.php');
 
- if (isset($_SESSION['id'])){ //値チェック
-     $id =$_SESSION['id'];
-      $name = $_SESSION['name'];
-      $photo = $_SESSION['photo'];
-      $profile = loadProfile($id);
- } else { 
-     echo("Not Found error");
- }
+    if (isset($_SESSION['id'])){ //値チェック
+        $id =$_SESSION['id'];
+        $name = $_SESSION['name'];
+        $photo = $_SESSION['photo'];
+        $profile = loadProfile($id);
+    } else { 
+        echo("Not Found error");
+    }
 
-$db = dbconnect(); //DB接続
+    $db = dbconnect(); //DB接続
 
-/* 最大ページ数を求める */
-$count = max_pageMU($id);
-$max_page =  floor(($count+1)/5+1);
+    /* 最大ページ数を求める */
+    $count = max_pageMU($id);
+    $max_page =  floor(($count+1)/5+1);
 ?>
+
 <script>
-//確認ポップアップ表示
-function confirm_test() {
-    var select = confirm("このヒトコトを本当に削除してよろしいですか？");
-    return select;
-}
+    //確認ポップアップ表示
+    function confirm_test() {
+        var select = confirm("このヒトコトを本当に削除してよろしいですか？");
+        return select;
+    }
 </script>
 
 <!DOCTYPE html>
@@ -35,7 +41,7 @@ function confirm_test() {
 
         <link rel="stylesheet" href="css\import.css"/>
     </head>
-<body>
+    <body>
 <!--------------------------------------------- 名前とプロフィール画像の表示 ------------------------------------------------------------>
         <div id="wrap">
             <div id="head">
@@ -50,7 +56,7 @@ function confirm_test() {
                         <!-- 名前とプロフィール画像の表示 -->
                         <div class="profile">
                             <h3><?php echo h($name); ?></h3>
-                                <?php if ($photo): ?>
+                                <?php if ($photo): //空チェック 無ければ表示しない?>
                                     <div class="icon-circle">
                                         <img src="member_picture/<?php echo h($photo); ?>"/>
                                     </div>
@@ -61,20 +67,21 @@ function confirm_test() {
                     
 <!--------------------------------------------- 自分の投稿した一言を一覧表示 ------------------------------------------------------------>
                     <h4>--- hitototo ---</h4>
-                    <?php //一言データの取得sql
+                    <?php //一言データの取得sql　5件まで表示
                          $sth = $db->prepare('select hitokoto_id, message, id, created  from posts where id=? order by hitokoto_id desc limit ? , 5'); //sqlのセット
                              if (!$sth) { //エラー処理
                                  die($db->error);
                              }
+                            // 現在表示されてるページ数を格納する変数を用意
                             $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
                             $page = ($page ?: 1);
-                            $start = ($page - 1) * 5;
+                            $start = ($page - 1) * 5; //最初の表示IDの指定
                             $sth->bind_param('ii',$id,$start);
                             $sth->execute();
                             $sth->bind_result($hid, $message, $id, $created); //各変数に値を挿入
                     ?>
 
-                    <?php while($sth->fetch()): //値がなくなるまで下の処理を実行 ?>
+                    <?php while($sth->fetch()): //投稿日時の降順で表示 ?>
                         <div class="msg">
                             <!-- 一言表示 -->
                             <div class="tag">
@@ -86,7 +93,7 @@ function confirm_test() {
                             <div class="dayAndDelete">
                                 <div class="day"><a href="view.php?id=<?php echo h($hid); ?>"><p><?php echo h($created); ?></p></a></div>
                             <!-- メッセージ削除機能 -->
-                                <div><?php if ($_SESSION['id'] === $id): ?>
+                                <div><?php if ($_SESSION['id'] === $id): //ヒトコトIDがログインユーザIDと一致する場合削除ボタンが表示?> 
                                     <form method="POST" action="delete.php?id=<?php echo h($hid); ?>" onsubmit="return confirm_test()">
                                         <input type="image" src="images/cash.png"/>
                                     </form>
@@ -94,17 +101,18 @@ function confirm_test() {
                             </div>
                         </div>
                     <?php endwhile; ?>
+<!------------------------------------------------------------------------------------------------------------------------------------->     
                     <!-- ページネーション -->
-                    <div class="pageNation">
+                        <div class="pageNation">
                                 <?php if ($page>1): ?>
                                     <a href="?page=<?php echo $page-1; ?>"><span1><?php echo $page-1; ?>ページ目へ</span1></a>
                                 <?php endif; ?>
                                 <?php if ($count > $page*5 && $page < $max_page): ?>
                                     <a href="?page=<?php echo $page+1; ?>"><span2><?php echo $page+1; ?>ページ目へ</span2></a>
                                 <?php endif; ?>
-                    </div>
-<!------------------------------------------------------------------------------------------------------------------------------------->     
+                        </div>
                 </div>
+                <!-- フッターの表示 -->
                   <footer>
                     <div class="blockArea">
                         <a href="index.php">
@@ -118,10 +126,9 @@ function confirm_test() {
                         <a href="mypage.php">
                             <div class="footer_tags"><p>MyPage</p></div>
                         </a>
-                        <!-- <div class="clear"></div> -->
                     </div>
                 </footer>
             </div>
         </div>
-</body>
+    </body>
 </html>

@@ -211,6 +211,11 @@ li {
 .dayAndDelete .day p:hover{
 	color:rgb(190, 162, 105);
 }
+/* .userDay a{
+	font-size: 75% !important;
+	color: #999 !important;
+	margin-right: 5px;
+} */
 
 .subject {
 	text-align: left;  /* 文章を左寄せする(※) */
