@@ -4,7 +4,7 @@ Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
 version: 2.8.1
 */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{Content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 
 /*
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
@@ -33,7 +33,7 @@ textarea{
 	padding: 20px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-Content: space-between;
 }
 
 #head .header p{
@@ -46,19 +46,19 @@ textarea{
 	color:rgb(190, 162, 105);
 }
 
-#wrap {
+#Wrap {
 	width: 98%;
 	height: 100vh;
 	margin: 0 auto;
 }
 
-.wrapper{
+.Wrapper{
 	min-height: 100vh;
 	box-sizing: border-box;
 	
 }
 
-#content {
+#Content {
 	padding: 20px;
 	background: #fffcf700;
 	width: auto;
@@ -133,7 +133,7 @@ dd {
 	margin-bottom: 0.5em;
 }
 
-.propertys dd{
+.Propertys dd{
 	margin-bottom: 1.8em;
 }
 
@@ -201,18 +201,18 @@ li {
 .cow{
 	float: left;
 }
-.dayAndDelete{
+.DayAndDelete{
 	display: flex;
 }
-.dayAndDelete a{
+.DayAndDelete a{
 	font-size: 75% !important;
 	color: #999 !important;
 	margin-right: 5px;
 }
-.dayAndDelete input{
+.DayAndDelete input{
 	width: 17;
 }
-.dayAndDelete .day p:hover{
+.DayAndDelete .Day p:hover{
 	color:rgb(190, 162, 105);
 }
 
@@ -228,7 +228,7 @@ li {
 	border-bottom: 1px solid #d4d4d4;
  }
 
- .profile > .icon-circle{
+ .profile > .Icon-circle{
 	width: 170px;
 	height: 170px;
 	border-radius: 50%;
@@ -237,7 +237,7 @@ li {
 	margin: 0 auto;
  }
 
- .profile >.icon-circle > img{
+ .profile >.Icon-circle > img{
 	width: 100%;
 	height: auto;
 	position: absolute;
@@ -254,7 +254,7 @@ li {
 		border-bottom: 1px solid #ccc;
  }
 
-.icon{
+.Icon{
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
@@ -264,7 +264,7 @@ li {
 	float: left;
   }
   
-.icon img{
+.Icon img{
 	width: 100%;
 	height: auto;
 	position: absolute;
@@ -274,7 +274,7 @@ li {
 	bottom: 0;
 	margin: auto;
   }
-.icon img:hover{
+.Icon img:hover{
 	opacity: 0.5;
 }
 
@@ -302,35 +302,35 @@ li {
 	margin: 15px 0px;
 }
 
-.blockArea{
+.Blockarea{
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-Content: space-evenly;
 }
 
 
-.blockArea .footer_tags{
+.Blockarea .Footertags{
 	margin: 5px;
 }
 
-.blockArea .footer_tags p{
+.Blockarea .Footertags p{
 	text-align: center;
 	font-size: 150%;
 	margin: 0;
 	color: #fff;
 }
 
-.blockArea p{
+.Blockarea p{
 	font-size: 180%;
 }
-.blockArea .footer_tags img:hover{
+.Blockarea .Footertags img:hover{
 	opacity: 0.5;
 }
 
-.blockArea .footer_tags p:hover{
+.Blockarea .Footertags p:hover{
 	color: rgb(190, 162, 105);
 }
-.blockArea p1{
+.Blockarea p1{
 	font-size: 300%;
 	font-weight: 400;
 }
@@ -359,22 +359,22 @@ li {
 	background    : rgb(190, 162, 105);  /* 文字色     */
   }
 
-.pageNation{
+.PageNation{
 	margin: 10px 0;
 }
-.pageNation span1:hover{
+.PageNation span1:hover{
 	color: rgb(190, 162, 105);;
 }
-.pageNation span2:hover{
+.PageNation span2:hover{
 	color: rgb(190, 162, 105);;
 }
-.pageNation span1{
+.PageNation span1{
 	color: #000;
 	border-left: 6px solid rgb(233, 222, 175);
 	background-color: rgb(233, 222, 175, 0.333);
 	padding: 5px 5px;
 }
-.pageNation span2{
+.PageNation span2{
 	color: #000;
 	border-right: 6px solid rgb(233, 222, 175);
 	background-color: rgb(233, 222, 175, 0.333);

@@ -5,8 +5,7 @@
     session_start();
     require('library.php');
 
-    //session値の有無
-    if (isset($_SESSION['id']) && isset($_SESSION['name'])){
+    if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
         $id = $_SESSION['id'];
         $name = $_SESSION['name'];
     } else {
@@ -16,21 +15,21 @@
 
     //urlパラメーターIDの数値チェック
     $post_id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    if (!$post_id){
+    if (!$post_id) {
         header('Location: index.php');
         exit();
     }
 
     //DBデータ削除処理
-    $db = dbconnect();
+    $db = dbConnect();
     $stmt = $db->prepare('delete from posts where hitokoto_id=? and id=? limit 1');
-    if(!$stmt){ //エラー処理
+    if (!$stmt) {
         die($db->error);
     }
 
     $stmt->bind_param('ii', $post_id, $id);
     $success = $stmt->execute();
-    if(!$success){ //エラー処理
+    if (!$success) {
         die($db->error);
     }
     

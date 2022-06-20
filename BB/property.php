@@ -7,7 +7,7 @@
     session_start();
     require('library.php');
 
-        if (isset($_SESSION['id'])){ //値チェック
+        if (isset($_SESSION['id'])) {
             $id =$_SESSION['id'];
             $nameName = $_SESSION['name'];
             $textProfile = loadProfile($id); 
@@ -15,32 +15,30 @@
             echo("Not Found error");
         }
 
-    $db = dbconnect(); //DB接続
+    $db = dbConnect();
 
-    $error = []; //error配列の初期化
+    $error = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
-        //文字チェック + nameの変更処理
         $name = filter_input(INPUT_POST,'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
-        $_SESSION['name'] = changeTheName($name,$id); 
+        $_SESSION['name'] = changeTheName($name,$id); // nameの変更処理
 
-        //文字チェック + profileTextの変更
         $profile = filter_input(INPUT_POST,'profile', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
-        changeTheProfile($profile,$id); 
+        changeTheProfile($profile,$id); // profileTextの変更
 
-        if (empty($_FILES["photo"]["error"])){ //空チェック
+        if (empty($_FILES["photo"]["error"])) {
             $photo = $_FILES['photo'];
-            if($photo['name'] !== '' && $image['error'] === 0){ //空チェック
+            if ($photo['name'] !== '' && $image['error'] === 0) {
                 $type = mime_content_type($photo['tmp_name']);
-                if($type !== 'photo/png' && $type !== 'photo/jpeg'){ //アドレス間違い、拡張子間違いはエラー
+                if ($type !== 'photo/png' && $type !== 'photo/jpeg') {
                     $error['photo'] = 'type';
                 }
             }
 
-            $filename = date('YmdHis') . '_' . $photo['name']; //登録した日時と写真nameを写真アドレスにする
-            changeThePhoto($filename,$id);
+            $filename = date('YmdHis') . '_' . $photo['name']; 
+            changeThePhoto($filename,$id); //photoの変更
 
-            if(!move_uploaded_file($photo['tmp_name'], 'member_picture/' . $filename)){ //member_pictureフォルダにに画像をアップロード
+            if (!move_uploaded_file($photo['tmp_name'], 'member_picture/' . $filename)) {
                 die('ファイルのアプロードに失敗しました');
             }
             $_SESSION['photo'] = $filename; 
@@ -54,25 +52,25 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" Content="IE=edge">
+        <meta name="viewport" Content="width=device-width, initial-scale=1.0">
         <title>ヒトコト</title>
 
         <link rel="stylesheet" href="css\import.css"/>
     </head>
     <body>
-        <div id="wrap">
+        <div id="Wrap">
             <div id="head">
             <a href="index.php"><h1>ヒトコト</h1></a> 
             </div>
-            <div class="wrapper">
-                <div id="content">
-                    <div class=propertys>
+            <div class="Wrapper">
+                <div id="Content">
+                    <div class=Propertys>
                         <form action="" method="post" enctype="multipart/form-data">
                             <h5>名前の変更</h5>
                             <!-- 名前の変更 -->
                                 <dl>
-                                    <dd><input type="text" name="name" cols="20" rows="2" value="<?php echo h($nameName);?>"></input></dd>
+                                    <dd><input type="text" name="name" cols="20" rows="2" maxlength="50" value="<?php echo h($nameName);?>"></input></dd>
                                 </dl>
 
                             <h5>プロフィール画像の変更</h5>
@@ -80,10 +78,9 @@
                                 <dl>
                                     <dd>
                                         <input type="file" name="photo" size="35" value=""/>
-                                            <?php if (isset($error['photo']) && $error['photo'] === 'type'): ?>
+                                            <?php if (isset($error['photo']) && $error['photo'] === 'type') : ?>
                                                 <p class="error">* 「.png」または「.jpg」の画像を指定してください</p>
                                             <?php endif; ?>
-                                        <p class="error">* 恐れ入りますが、画像を改めて指定してください</p>
                                     </dd>
                                 </dl>
                         
@@ -92,7 +89,7 @@
                                 <dl>
                                     <dd>
                                         <div>
-                                            <textarea type="text" name="profile" cols="50" rows="5" placeholder="テキストを入力"><?php echo $textProfile; ?></textarea>
+                                            <textarea type="text" name="profile" cols="50" rows="5" maxlength="100" placeholder="テキストを入力"><?php echo $textProfile; ?></textarea>
                                         </div>
                                             <input type="submit" class="button" value="done"/>
                                     </dd>
@@ -108,19 +105,20 @@
                         </dl>
                     </div>
                 </div>
+                
                 <!-- フッター表示 -->
                 <footer>
-                    <div class="blockArea">
+                    <div class="Blockarea">
                         <a href="index.php">
-                            <div class="footer_tags"><p>Timeline</p></div>
+                            <div class="Footertags"><p>Timeline</p></div>
                         </a>
                         <p>|</p>
                         <a href="hitokoto.php">
-                            <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                            <div class="Footertags"><img src="images/kakiko.png" style="width: 40px;"></div>
                         </a>
                         <p>|</p>
                         <a href="mypage.php">
-                            <div class="footer_tags"><p>MyPage</p></div>
+                            <div class="Footertags"><p>MyPage</p></div>
                         </a>
                     </div>
                 </footer>
