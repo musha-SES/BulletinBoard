@@ -77,6 +77,7 @@
 
                         <?php while($sth->fetch()): ?>
                             <div class="msg">
+                            <div class="Icon" style="pointer-events:none;"><img src ="member_picture/<?php echo h($user[1]); ?>"/></div>
                                 <!-- 一言表示 -->
                                 <div class="Tag">
                                     <span><?php echo h($name); ?></span><br>

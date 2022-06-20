@@ -81,8 +81,9 @@
 
                     <?php while($sth->fetch()): //投稿日時の降順で表示 ?>
                         <div class="msg">
+                            <div class="Icon" style="pointer-events:none;"><img src ="member_picture/<?php echo h($photo); ?>"/></div>
                             <!-- 一言表示 -->
-                            <div class="Tag">
+                            <div class="tag">
                                 <span><?php echo h($name); ?></span><br>
                                 <p><?php echo h($message); ?></p>
                             </div>

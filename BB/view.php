@@ -71,7 +71,7 @@
                                 <?php endif; ?>
 
                                 <!-- 一言表示 -->
-                                <div class="Tag">
+                                <div class="tag">
                                     <span><?php echo h($name); ?></span><br>
                                     <p><?php echo h($message); ?></p>
                                 </div>

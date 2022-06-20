@@ -148,7 +148,7 @@ require('../library.php');
                         </dl>
                     <div><input type="submit" value="入力内容を確認する"/></div>
                 </form><br>
-                <div class="Tag">
+                <div class="tag">
                     <span><a href="../">ログインフォームに戻る</a></span>
                 </div>
             </div>

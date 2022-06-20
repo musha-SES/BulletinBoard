@@ -63,7 +63,7 @@
 				
 				<form action="" method="post">
 					
-					<div class="Tag">
+					<div class="tag">
 						<span>ニックネーム</span><br>
 								<p>【<?php echo h($form['name']); ?>】</p>
 	
