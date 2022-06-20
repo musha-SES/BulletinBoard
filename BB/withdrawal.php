@@ -40,8 +40,8 @@ require('library.php');
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" Content="IE=edge">
-        <meta name="viewport" Content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ヒトコト</title>
         <link rel="stylesheet" href="css\import.css"/>
     </head>
@@ -51,7 +51,7 @@ require('library.php');
             <div id="head">
                 <a href="index.php"><h1>ヒトコト --退会手続き--</h1></a>
             </div>
-            <div id="Content">
+            <div id="content">
                 <div class="header">
                     &laquo;<a href="property.php">Property</a>
                 </div>

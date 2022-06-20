@@ -53,7 +53,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" Content="text/html; charset=UTF-8"/>
+        <meta http-equiv="content-Type" content="text/html; charset=UTF-8"/>
         <link rel="stylesheet" type="text/css" href="css\import.css"/>
         <title>ログインする</title>
     </head>
@@ -63,7 +63,7 @@
             <div id="head">
                 <h1>ログインする</h1>
             </div>
-            <div id="Content">
+            <div id="content">
                 <div id="lead">
                     <p>メールアドレスとパスワードを記入してログインしてください。</p>
                     <p>入会手続きがまだの方はこちらからどうぞ。</p>

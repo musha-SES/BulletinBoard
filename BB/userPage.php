@@ -33,8 +33,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" Content="IE=edge">
-        <meta name="viewport" Content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ヒトコト</title>
 
         <link rel="stylesheet" href="css\import.css"/>
@@ -44,8 +44,8 @@
             <div id="head">
                 <a href="index.php"><h1>ヒトコト --Userpage--</h1></a> 
             </div>
-                <div class="Wrapper">
-                    <div id="Content">
+                <div class="wrapper">
+                    <div id="content">
                         <!-- 名前とプロフィール画像の表示 -->
                         <div class="profile">
                             <h3><?php echo h($user[0]); ?></h3>
@@ -103,17 +103,17 @@
 
                 <!-- フッターの表示 -->
                 <footer>
-                    <div class="Blockarea">
+                    <div class="blockArea">
                         <a href="index.php">
-                            <div class="Footertags"><p>Timeline</p></div>
+                            <div class="footer_tags"><p>Timeline</p></div>
                         </a>
                         <p1>|</p1>
                         <a href="hitokoto.php">
-                            <div class="Footertags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                            <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
                         </a>
                         <p1>|</p1>
                         <a href="mypage.php">
-                            <div class="Footertags"><p>MyPage</p></div>
+                            <div class="footer_tags"><p>MyPage</p></div>
                         </a>
                     </div>
                 </footer>

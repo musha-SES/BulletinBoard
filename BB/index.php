@@ -38,8 +38,8 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" Content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" Content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>ヒトコト</title>
 
         <link rel="stylesheet" href="css\import.css"/>
@@ -50,8 +50,8 @@
             <div id="head">
                 <a href="index.php"><h1>ヒトコト</h1></a>
             </div>
-                <div class="Wrapper">
-                    <div id="Content">
+                <div class="wrapper">
+                    <div id="content">
                         <?php 
                             $stmt = $db->prepare('select p.hitokoto_id, p.id, p.message, p.created, m.name, m.picture from posts p, members m where m.id=p.id order by hitokoto_id desc limit ?,5'); //sqlのセット
                                 if (!$stmt) {
@@ -111,17 +111,17 @@
                     </div>
                     <!-- フッター表示 -->
                     <footer>
-                        <div class="Blockarea">
+                        <div class="blockArea">
                             <a href="index.php">
-                                <div class="Footertags"><p>Timeline</p></div>
+                                <div class="footer_tags"><p>Timeline</p></div>
                             </a>
                             <p1>|</p1>
                             <a href="hitokoto.php">
-                                <div class="Footertags"><img src="images/kakiko.png" style="width: 40px;"></div>
+                                <div class="footer_tags"><img src="images/kakiko.png" style="width: 40px;"></div>
                             </a>
                             <p1>|</p1>
                             <a href="mypage.php">
-                                <div class="Footertags"><p>MyPage</p></div>
+                                <div class="footer_tags"><p>MyPage</p></div>
                             </a>
                         </div>
                     </footer>
